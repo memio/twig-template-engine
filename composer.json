@@ -1,0 +1,31 @@
+{
+    "name": "memio/twig-template-engine",
+    "license": "MIT",
+    "type": "library",
+    "description": "Memio's Twig templates, used to generate PHP code from given Model",
+    "keywords": ["generator", "PHP", "code", "twig", "templates"],
+    "homepage": "http://memio.github.io/memio",
+    "authors": [
+        {
+            "name": "Loïc Chardonnet",
+            "email": "loic.chardonnet@gmail.com",
+            "homepage": "http://gnugat.github.io",
+            "role": "Developer"
+        }
+    ],
+    "autoload": { "psr-4": {
+        "Memio\\TwigTemplateEngine\\": "src/Memio/TwigTemplateEngine",
+        "Memio\\TwigTemplateEngine\\Config\\": "config"
+    }},
+    "require": {
+        "memio/model": "~1.0",
+        "memio/pretty-printer": "~1.0@rc",
+        "php": ">=5.3.3",
+        "twig/twig": "~1.18"
+    },
+    "require-dev": {
+        "ciaranmcnulty/phpspec-typehintedmethods": "~1.1",
+        "fabpot/php-cs-fixer": "~1.6",
+        "phpspec/phpspec": "~2.2"
+    }
+}
