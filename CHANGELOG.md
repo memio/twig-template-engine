@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.2: Fixed Locate namespace
+
+* fixed Locate namespace
+
 ## 1.0.1: Fixed documentation
 
 * fixed version in README
