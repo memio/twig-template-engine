@@ -1,11 +1,13 @@
-# Memio's TwigTemplateEngine [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c8194cd1-0f80-4bce-9ab2-8368db5411b3/mini.png)](https://insight.sensiolabs.com/projects/c8194cd1-0f80-4bce-9ab2-8368db5411b3) [![Travis CI](https://travis-ci.org/memio/twig-template-engine.png)](https://travis-ci.org/memio/twig-template-engine)
+# Memio's TwigTemplateEngine [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d36f6c6e-c3c1-44f5-9573-c76ad99c0253/mini.png)](https://insight.sensiolabs.com/projects/d36f6c6e-c3c1-44f5-9573-c76ad99c0253) [![Travis CI](https://travis-ci.org/memio/twig-template-engine.png)](https://travis-ci.org/memio/twig-template-engine)
 
-`PrettyPrinter` is a code generator (printer) that takes a Model and calls the
-appropriate `TemplateEngine` to actually generate the corresponding code,
-using highly opinionated coding standards (pretty).
+Memio is a highly opinionated PHP code generator library. It is composed of small
+independent packages, one being `PrettyPrinter`: the actual code generator.
 
-`PrettyPrinter` returns a string that can be saved in a file, dislpayed on a
-console output or displayed in a web page. Possibilities are endless!
+`PrettyPrinter` relies on an interface, `TemplateEngine`, but doesn't provide any
+implementation to avoid direct coupling to any templating libraries.
+
+This package, `TwigTemplateEngine`, provides an implementation and templates for
+[Twig](http://twig.sensiolabs.org).
 
 > **Note**: This package is part of [Memio](http://memio.github.io/memio).
 > Have a look at [the main repository](http://github.com/memio/memio).
@@ -25,16 +27,6 @@ We're going to generate a class with a constructor and two attributes:
 
 require __DIR__.'/vendor/autoload.php';
 
-use Memio\TwigTemplateEngine\TwigTemplateEngine;
-use Memio\TwigTemplateEngine\TwigExtension\Line\ContractLineStrategy;
-use Memio\TwigTemplateEngine\TwigExtension\Line\FileLineStrategy;
-use Memio\TwigTemplateEngine\TwigExtension\Line\Line;
-use Memio\TwigTemplateEngine\TwigExtension\Line\MethodPhpdocLineStrategy;
-use Memio\TwigTemplateEngine\TwigExtension\Line\ObjectLineStrategy;
-use Memio\TwigTemplateEngine\TwigExtension\Line\StructurePhpdocLineStrategy;
-use Memio\TwigTemplateEngine\TwigExtension\Type;
-use Memio\TwigTemplateEngine\TwigExtension\Whitespace;
-use Memio\TwigTemplateEngine\TwigTemplateEngine;
 use Memio\Model\File;
 use Memio\Model\Object;
 use Memio\Model\Property;
@@ -45,18 +37,18 @@ use Memio\Model\Argument;
 $loader = new \Twig_Loader_Filesystem(__DIR__.'/templates');
 $twig = new \Twig_Environment($loader);
 
-$line = new Line();
-$line->add(new ContractLineStrategy());
-$line->add(new FileLineStrategy());
-$line->add(new MethodPhpdocLineStrategy());
-$line->add(new ObjectLineStrategy());
-$line->add(new StructurePhpdocLineStrategy());
+$line = new Memio\TwigTemplateEngine\TwigExtension\Line\Line();
+$line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\ContractLineStrategy());
+$line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\FileLineStrategy());
+$line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\MethodPhpdocLineStrategy());
+$line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\ObjectLineStrategy());
+$line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\StructurePhpdocLineStrategy());
 
-$twig->addExtension(new Type());
-$twig->addExtension(new Whitespace($line));
+$twig->addExtension(new Memio\TwigTemplateEngine\TwigExtension\Type());
+$twig->addExtension(new Memio\TwigTemplateEngine\TwigExtension\Whitespace($line));
 
-$templateEngine = new TwigTemplateEngine($twig);
-$prettyPrinter = new PrettyPrinter($templateEngine);
+$templateEngine = new Memio\TwigTemplateEngine\TwigTemplateEngine($twig);
+$prettyPrinter = new Memio\PrettyPrinter\PrettyPrinter($templateEngine);
 
 // Describe the code you want to generate using "Models"
 $myService = File::make('src/Vendor/Project/MyService.php')
