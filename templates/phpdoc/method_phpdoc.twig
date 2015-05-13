@@ -5,6 +5,10 @@
 {{- needs_line_after(method_phpdoc, 'parameter_tags') ? "\n\n" -}}
 {% if method_phpdoc.deprecationTag %}{% include 'phpdoc/deprecation_tag.twig' with { 'deprecation_tag': method_phpdoc.deprecationTag } only %}{% endif %}
 {{- needs_line_after(method_phpdoc, 'deprecation_tag') ? "\n\n" -}}
+{% if method_phpdoc.deprecationTag %}{% include 'phpdoc/return_tag.twig' with { 'return_tag': method_phpdoc.returnTag } only %}{% endif %}
+{{- needs_line_after(method_phpdoc, 'return_tag') ? "\n\n" -}}
+{% if method_phpdoc.throwTags %}{% include 'collection/phpdoc/throw_tag_collection.twig' with { 'throw_tag_collection': method_phpdoc.throwTags } only %}{% endif %}
+{{- needs_line_after(method_phpdoc, 'throw_tags') ? "\n\n" -}}
 {% if method_phpdoc.apiTag %}{% include 'phpdoc/api_tag.twig' with { 'api_tag': method_phpdoc.apiTag } only %}{% endif %}
 {% endset -%}
 

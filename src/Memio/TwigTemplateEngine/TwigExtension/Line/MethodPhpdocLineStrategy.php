@@ -29,19 +29,29 @@ class MethodPhpdocLineStrategy implements LineStrategy
     public function needsLineAfter($model, $block)
     {
         $parameterTags = $model->getParameterTags();
+        $throwTags = $model->getThrowTags();
 
         $hasApiTag = (null !== $model->getApiTag());
         $hasParameterTags = (!empty($parameterTags));
         $hasDescription = (null !== $model->getDescription());
         $hasDeprecationTag = (null !== $model->getDeprecationTag());
+        $hasReturnTag = (null !== $model->getReturnTag());
+        $hasThrowTags = (!empty($throwTags));
+
         if ('description' === $block) {
-            return ($hasDescription && ($hasParameterTags || $hasApiTag || $hasDeprecationTag));
+            return ($hasDescription && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasParameterTags || $hasThrowTags));
         }
         if ('parameter_tags' === $block) {
-            return ($hasParameterTags && ($hasApiTag || $hasDeprecationTag));
+            return ($hasParameterTags && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasThrowTags));
         }
         if ('deprecation_tag' === $block) {
-            return ($hasApiTag && $hasDeprecationTag);
+            return ($hasDeprecationTag && ($hasReturnTag || $hasApiTag || $hasThrowTags));
+        }
+        if ('return_tag' === $block) {
+            return ($hasReturnTag && ($hasApiTag || $hasThrowTags));
+        }
+        if ('throw_tags' === $block) {
+            return ($hasThrowTags && $hasApiTag);
         }
     }
 }
