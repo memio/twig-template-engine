@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.0: @return and @throws PHPdoc tags
+
+* added abstract class
+* added `return` PHPdoc tag
+* added `throws` PHPdoc tag
+
 ## 1.0.2: Fixed Locate namespace
 
 * fixed Locate namespace
