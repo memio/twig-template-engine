@@ -18,7 +18,7 @@
         "Memio\\TwigTemplateEngine\\Config\\": "config"
     }},
     "require": {
-        "memio/model": "~1.0",
+        "memio/model": "~1.2",
         "memio/pretty-printer": "~1.0@rc",
         "php": ">=5.3.3",
         "twig/twig": "~1.18"
