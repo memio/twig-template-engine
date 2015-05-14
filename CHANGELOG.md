@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1: Fixed PHPdoc tags
+
+* actually merged the PR about the new PHPdoc tags
+
 ## 1.1.0: @return and @throws PHPdoc tags
 
 * added abstract class
