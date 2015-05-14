@@ -24,8 +24,8 @@
         "twig/twig": "~1.18"
     },
     "require-dev": {
-        "ciaranmcnulty/phpspec-typehintedmethods": "~1.1",
         "fabpot/php-cs-fixer": "~1.6",
+        "memio/spec-gen": "~0.1",
         "phpspec/phpspec": "~2.2"
     }
 }
