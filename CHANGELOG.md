@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0: Model v1.3
+
+* updated dependency on memio/model to v1.3
+
 ## 1.1.1: Fixed PHPdoc tags
 
 * actually merged the PR about the new PHPdoc tags
