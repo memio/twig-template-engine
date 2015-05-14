@@ -18,13 +18,12 @@
         "Memio\\TwigTemplateEngine\\Config\\": "config"
     }},
     "require": {
-        "memio/model": "~1.2",
-        "memio/pretty-printer": "~1.0@rc",
+        "memio/model": "~1.3",
+        "memio/pretty-printer": "~1.0",
         "php": ">=5.3.3",
         "twig/twig": "~1.18"
     },
     "require-dev": {
-        "ciaranmcnulty/phpspec-typehintedmethods": "~1.1",
         "fabpot/php-cs-fixer": "~1.6",
         "phpspec/phpspec": "~2.2"
     }

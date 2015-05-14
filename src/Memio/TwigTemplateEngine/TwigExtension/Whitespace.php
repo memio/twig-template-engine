@@ -11,6 +11,8 @@
 
 namespace Memio\TwigTemplateEngine\TwigExtension;
 
+use Memio\Model\FullyQualifiedName;
+use Memio\Model\Type as ModelType;
 use Memio\TwigTemplateEngine\TwigExtension\Line\Line;
 use Twig_Extension;
 use Twig_SimpleFilter;
@@ -64,7 +66,13 @@ class Whitespace extends Twig_Extension
         $longestElement = $elementLength;
         foreach ($collection as $element) {
             if ('Memio\Model\Phpdoc\ParameterTag' === get_class($element)) {
-                $longestElement = max($longestElement, strlen($element->getType()));
+                $type = $element->getType();
+                $modelType = new ModelType($element->getType());
+                if ($modelType->isObject()) {
+                    $fullyQualifiedName = new FullyQualifiedName($type);
+                    $type = $fullyQualifiedName->getName();
+                }
+                $longestElement = max($longestElement, strlen($type));
             }
         }
 
