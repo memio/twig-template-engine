@@ -3,9 +3,10 @@
 
 {% include 'phpdoc/license_phpdoc.twig' with { 'license_phpdoc': file.licensePhpdoc } only %}
 {% endif %}
-
+{% if file.namespace is not empty %}
 namespace {{ file.namespace }};
 
+{% endif %}
 {% include 'collection/fully_qualified_name_collection.twig' with {
     'fully_qualified_name_collection': file.allFullyQualifiedNames
 } only %}
