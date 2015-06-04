@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.3: No namespace
+
+* do not generate namespace statement if not set
+
 ## 1.2.1: Fixed return tag
 
 * fixed return tag
