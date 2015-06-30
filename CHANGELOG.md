@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.4: Fixed custom template priority
+
+* custom templates now have a higher priority
+
 ## 1.2.3: No namespace
 
 * do not generate namespace statement if not set
