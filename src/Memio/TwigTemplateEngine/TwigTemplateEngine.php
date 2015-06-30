@@ -34,7 +34,7 @@ class TwigTemplateEngine implements TemplateEngine
      */
     public function addPath($path)
     {
-        $this->twig->getLoader()->addPath($path);
+        $this->twig->getLoader()->prependPath($path);
     }
 
     /**

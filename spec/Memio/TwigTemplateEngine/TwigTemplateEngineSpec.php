@@ -34,7 +34,7 @@ class TwigTemplateEngineSpec extends ObjectBehavior
     function it_can_have_more_paths(Twig_Environment $twig, Twig_Loader_Filesystem $loader)
     {
         $twig->getLoader()->willReturn($loader);
-        $loader->addPath(self::TEMPLATE_PATH)->shouldBeCalled();
+        $loader->prependPath(self::TEMPLATE_PATH)->shouldBeCalled();
 
         $this->addPath(self::TEMPLATE_PATH);
     }
