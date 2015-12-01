@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.5: Updated dependencies
+
+* added support for PHP 7
+
 ## 1.2.4: Fixed custom template priority
 
 * custom templates now have a higher priority
