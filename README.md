@@ -16,7 +16,7 @@ This package, `TwigTemplateEngine`, provides an implementation and templates for
 
 Install it using [Composer](https://getcomposer.org/download):
 
-    composer require memio/twig-template-engine:~1.0
+    composer require memio/twig-template-engine:^1.0
 
 ## Example
 
