@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.6: Fixed missing empty line
+
+* fixed missing empty line abovr namespace
+
 ## 1.2.5: Updated dependencies
 
 * added support for PHP 7
