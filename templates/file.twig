@@ -4,6 +4,7 @@
 {% include 'phpdoc/license_phpdoc.twig' with { 'license_phpdoc': file.licensePhpdoc } only %}
 {% endif %}
 {% if file.namespace is not empty %}
+
 namespace {{ file.namespace }};
 
 {% endif %}
