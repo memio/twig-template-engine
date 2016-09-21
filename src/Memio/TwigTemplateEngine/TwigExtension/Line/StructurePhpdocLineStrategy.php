@@ -15,18 +15,12 @@ use Memio\Model\Phpdoc\StructurePhpdoc;
 
 class StructurePhpdocLineStrategy implements LineStrategy
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function supports($model)
+    public function supports($model) : bool
     {
         return $model instanceof StructurePhpdoc;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function needsLineAfter($model, $block)
+    public function needsLineAfter($model, string $block) : bool
     {
         $hasDescription = (null !== $model->getDescription());
         $hasApiTag = (null !== $model->getApiTag());

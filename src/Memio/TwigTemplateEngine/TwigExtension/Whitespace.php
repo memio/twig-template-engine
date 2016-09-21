@@ -12,60 +12,40 @@
 namespace Memio\TwigTemplateEngine\TwigExtension;
 
 use Memio\Model\FullyQualifiedName;
+use Memio\Model\Phpdoc\ParameterTag;
 use Memio\Model\Type as ModelType;
 use Memio\TwigTemplateEngine\TwigExtension\Line\Line;
-use Twig_Extension;
-use Twig_SimpleFilter;
-use Twig_SimpleFunction;
 
-class Whitespace extends Twig_Extension
+class Whitespace extends \Twig_Extension
 {
-    /**
-     * @var Line
-     */
     private $line;
 
-    /**
-     * @param Line $line
-     */
     public function __construct(Line $line)
     {
         $this->line = $line;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getFunctions()
+    public function getFunctions() : array
     {
-        return array(
-            new Twig_SimpleFunction('needs_line_after', array($this->line, 'needsLineAfter')),
-        );
+        return [
+            new \Twig_SimpleFunction('needs_line_after', [$this->line, 'needsLineAfter']),
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getFilters()
+    public function getFilters() : array
     {
-        return array(
-            new Twig_SimpleFilter('align', array($this, 'align')),
-            new Twig_SimpleFilter('indent', array($this, 'indent')),
-        );
+        return [
+            new \Twig_SimpleFilter('align', [$this, 'align']),
+            new \Twig_SimpleFilter('indent', [$this, 'indent']),
+        ];
     }
 
-    /**
-     * @param string $current
-     * @param array  $collection
-     *
-     * @return string
-     */
-    public function align($current, $collection)
+    public function align(string $current, array $collection) : string
     {
         $elementLength = strlen($current);
         $longestElement = $elementLength;
         foreach ($collection as $element) {
-            if ('Memio\Model\Phpdoc\ParameterTag' === get_class($element)) {
+            if (ParameterTag::class === get_class($element)) {
                 $type = $element->getType();
                 $modelType = new ModelType($element->getType());
                 if ($modelType->isObject()) {
@@ -79,17 +59,13 @@ class Whitespace extends Twig_Extension
         return $current.str_repeat(' ', $longestElement - $elementLength);
     }
 
-    /**
-     * @param string $text
-     * @param int    $level
-     * @param string $type
-     *
-     * @return string
-     */
-    public function indent($text, $level = 1, $type = 'code')
-    {
+    public function indent(
+        string $text,
+        int $level = 1,
+        string $type = 'code'
+    ) : string {
         $lines = explode("\n", $text);
-        $indentedLines = array();
+        $indentedLines = [];
         if ('code' === $type) {
             foreach ($lines as $line) {
                 $indentedLines[] = '    '.$line;
@@ -108,10 +84,7 @@ class Whitespace extends Twig_Extension
         return implode("\n", $indentedLines);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
+    public function getName() : string
     {
         return 'whitespace';
     }

@@ -15,67 +15,41 @@ use Memio\Model\Argument;
 use Memio\Model\Contract;
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Type as ModelType;
-use Twig_Extension;
-use Twig_SimpleFilter;
-use Twig_SimpleFunction;
-use Twig_SimpleTest;
 
-class Type extends Twig_Extension
+class Type extends \Twig_Extension
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getFilters()
+    public function getFilters() : array
     {
-        return array(
-            new Twig_SimpleFilter('filter_namespace', array($this, 'filterNamespace')),
-        );
+        return [
+            new \Twig_SimpleFilter('filter_namespace', [$this, 'filterNamespace']),
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getFunctions()
+    public function getFunctions() : array
     {
-        return array(
-            new Twig_SimpleFunction('has_typehint', array($this, 'hasTypehint')),
-        );
+        return [
+            new \Twig_SimpleFunction('has_typehint', [$this, 'hasTypehint']),
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getTests()
+    public function getTests() : array
     {
-        return array(
-            new Twig_SimpleTest('contract', array($this, 'isContract')),
-        );
+        return [
+            new \Twig_SimpleTest('contract', [$this, 'isContract']),
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
+    public function getName() : string
     {
         return 'type';
     }
 
-    /**
-     * @param mixed $model
-     *
-     * @return bool
-     */
-    public function isContract($model)
+    public function isContract($model) : bool
     {
         return $model instanceof Contract;
     }
 
-    /**
-     * @param mixed $model
-     *
-     * @return bool
-     */
-    public function hasTypehint($model)
+    public function hasTypehint($model) : bool
     {
         if (!$model instanceof Argument) {
             return false;
@@ -85,12 +59,7 @@ class Type extends Twig_Extension
         return $type->hasTypehint();
     }
 
-    /**
-     * @param string $stringType
-     *
-     * @return string
-     */
-    public function filterNamespace($stringType)
+    public function filterNamespace(string $stringType) : string
     {
         $type = new ModelType($stringType);
         if (!$type->isObject()) {
