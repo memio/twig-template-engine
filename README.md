@@ -16,7 +16,7 @@ This package, `TwigTemplateEngine`, provides an implementation and templates for
 
 Install it using [Composer](https://getcomposer.org/download):
 
-    composer require memio/twig-template-engine:^1.0
+    composer require memio/twig-template-engine:^2.0@alpha
 
 ## Example
 
@@ -51,13 +51,13 @@ $templateEngine = new Memio\TwigTemplateEngine\TwigTemplateEngine($twig);
 $prettyPrinter = new Memio\PrettyPrinter\PrettyPrinter($templateEngine);
 
 // Describe the code you want to generate using "Models"
-$myService = File::make('src/Vendor/Project/MyService.php')
+$myService = (new File('src/Vendor/Project/MyService.php'))
     ->setStructure(
-        Object::make('Vendor\Project\MyService')
+        (new Object('Vendor\Project\MyService'))
             ->addProperty(new Property('createdAt'))
             ->addProperty(new Property('filename'))
             ->addMethod(
-                Method::make('__construct')
+                (new Method('__construct'))
                     ->addArgument(new Argument('DateTime', 'createdAt'))
                     ->addArgument(new Argument('string', 'filename'))
             )
@@ -81,10 +81,9 @@ namespace Vendor\Project;
 class MyService
 {
     private $createdAt;
-
     private $filename;
 
-    public function __construct(DateTime $createdAt, $filename)
+    public function __construct(DateTime $createdAt, string $filename)
     {
     }
 }

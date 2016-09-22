@@ -1,5 +1,83 @@
 # CHANGELOG
 
+## 2.0.0-alpha1: PHP 7
+
+* dropped support for PHP < 7
+* added scalar type hints
+* added return type hints
+
+### BC breaks:
+
+* changed maximum method argument line length from 120 to 80
+* changed opening curly brace to be on the same line as the method closing
+  parenthesis, when arguments are on many lines
+* changed properties to not have empty lines between them,
+  except if they have PHPdoc
+
+### Example
+
+Code generated before:
+
+```php
+<?php
+
+namespace Vendor\Project;
+
+class MyClass
+{
+    private $variableNamesWouldNotBeVeryLong;
+    
+    private $imagineCodeWithVariableNamesThatNeverEnd;
+
+    /**
+     * @var string
+     */
+    private $number;
+
+    public funtion myMethod($variableNamesWouldNotBeVeryLong, $isFirst, $thisIsTheLongestVariableNameEver)
+    {
+        return 42;
+    }
+
+    public function myOtherMethod()
+    {
+        return [];
+    }
+}
+```
+
+Code generated after:
+
+```php
+<?php
+
+namespace Vendor\Project;
+
+class MyClass
+{
+    private $variableNamesWouldNotBeVeryLong;
+    private $imagineCodeWithVariableNamesThatNeverEnd;
+
+    /**
+     * @var string
+     */
+    private $number;
+
+    public funtion myMethod(
+        bool $variableNamesWouldNotBeVeryLong,
+        string $isFirst,
+        float $thisIsTheLongestVariableNameEver
+    ) : int {
+        return 42;
+    }
+
+    public function myOtherMethod() : array
+    {
+        return [];
+    }
+}
+```
+
 ## 1.2.6: Fixed missing empty line
 
 * fixed missing empty line abovr namespace
