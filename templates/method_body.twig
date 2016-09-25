@@ -1,6 +1,10 @@
+{% set inline %}
+    {%- include 'collection/arguments/inline.twig' with { 'argument_collection': argument_collection } only -%}
+{% endset %}
 {% if method.isAbstract %}
     {{- ";" -}}
 {% else %}
+    {{- inline|length > 80 - (length_restriction | default(0)) ? " {\n" : "\n    {\n" }}
     {{- " {\n" }}
     {{- method.body is not empty ? (method.body ~ "\n")|raw -}}
     {{ "    }" -}}
