@@ -1,5 +1,5 @@
 {% for property in property_collection -%}
     {{ not loop.first and property.hasPhpdoc ? "\n" : '' }}
     {% include 'property.twig' with { 'property': property } only %}
-    {{ loop.last ? "\n\n" : "\n }}
+    {{ loop.last ? "\n\n" : "\n" }}
 {%- endfor -%}
