@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.0-alpha2: Fixed style
+
+* fixed method opening curly brace
+* fixed property collection
+
 ## 2.0.0-alpha1: PHP 7
 
 * dropped support for PHP < 7
