@@ -26,7 +26,7 @@ class ContractLineStrategy implements LineStrategy
         $constants = $model->allConstants();
         $methods = $model->allMethods();
         if ('constants' === $block) {
-            return (!empty($constants) && !empty($methods));
+            return !empty($constants) && !empty($methods);
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');

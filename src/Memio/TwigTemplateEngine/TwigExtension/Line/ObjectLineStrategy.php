@@ -27,10 +27,10 @@ class ObjectLineStrategy implements LineStrategy
         $properties = $model->allProperties();
         $methods = $model->allMethods();
         if ('constants' === $block) {
-            return (!empty($constants) && (!empty($properties) || !empty($methods)));
+            return !empty($constants) && (!empty($properties) || !empty($methods));
         }
         if ('properties' === $block) {
-            return (!empty($properties) && !empty($methods));
+            return !empty($properties) && !empty($methods);
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');

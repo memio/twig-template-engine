@@ -25,7 +25,7 @@ class FileLineStrategy implements LineStrategy
     {
         $fullyQualifiedNames = $model->allFullyQualifiedNames();
         if ('fully_qualified_names' === $block) {
-            return (!empty($fullyQualifiedNames));
+            return !empty($fullyQualifiedNames);
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');
