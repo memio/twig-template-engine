@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.7: Allowed Twig v2
+
+* added support for Twig 2
+
 ## 1.2.6: Fixed missing empty line
 
 * fixed missing empty line abovr namespace
