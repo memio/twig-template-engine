@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0-alpha3: Allowed Twig v2
+
+* added support for Twig 2
+
 ## 2.0.0-alpha2: Fixed style
 
 * fixed method opening curly brace
