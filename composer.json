@@ -21,7 +21,7 @@
         "memio/model": "^2.0@alpha",
         "memio/pretty-printer": "^2.0@alpha",
         "php": "^7.0",
-        "twig/twig": "^1.18"
+        "twig/twig": "^1.18 || ^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.6",
