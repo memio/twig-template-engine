@@ -11,7 +11,7 @@
 
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\Model\Object;
+use Memio\Model\Objekt;
 use PhpSpec\ObjectBehavior;
 
 class ObjectLineStrategySpec extends ObjectBehavior
@@ -24,12 +24,12 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->shouldImplement('Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy');
     }
 
-    function it_supports_objects(Object $object)
+    function it_supports_objects(Objekt $object)
     {
         $this->supports($object)->shouldBe(true);
     }
 
-    function it_needs_line_after_constants_if_object_has_both_constants_and_properties(Object $object)
+    function it_needs_line_after_constants_if_object_has_both_constants_and_properties(Objekt $object)
     {
         $object->allConstants()->willReturn(array(1));
         $object->allProperties()->willReturn(array(2));
@@ -38,7 +38,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($object, self::CONSTANT_BLOCK)->shouldBe(true);
     }
 
-    function it_needs_line_after_constants_if_object_has_both_constants_and_methods(Object $object)
+    function it_needs_line_after_constants_if_object_has_both_constants_and_methods(Objekt $object)
     {
         $object->allConstants()->willReturn(array(1));
         $object->allProperties()->willReturn(array());
@@ -47,7 +47,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($object, self::CONSTANT_BLOCK)->shouldBe(true);
     }
 
-    function it_needs_line_after_properties_if_object_has_both_properties_and_methods(Object $object)
+    function it_needs_line_after_properties_if_object_has_both_properties_and_methods(Objekt $object)
     {
         $object->allConstants()->willReturn(array());
         $object->allProperties()->willReturn(array(1));
