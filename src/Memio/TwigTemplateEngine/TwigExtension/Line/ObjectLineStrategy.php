@@ -12,13 +12,13 @@
 namespace Memio\TwigTemplateEngine\TwigExtension\Line;
 
 use Memio\PrettyPrinter\Exception\InvalidArgumentException;
-use Memio\Model\Object;
+use Memio\Model\Objekt;
 
 class ObjectLineStrategy implements LineStrategy
 {
     public function supports($model) : bool
     {
-        return $model instanceof Object;
+        return $model instanceof Objekt;
     }
 
     public function needsLineAfter($model, string $block) : bool

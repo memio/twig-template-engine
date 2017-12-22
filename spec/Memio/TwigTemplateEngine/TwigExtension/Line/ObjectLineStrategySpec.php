@@ -11,7 +11,7 @@
 
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\Model\Object;
+use Memio\Model\Objekt;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
@@ -25,13 +25,13 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_objects(Object $object)
+    function it_supports_objects(Objekt $object)
     {
         $this->supports($object)->shouldBe(true);
     }
 
     function it_needs_line_after_constants_if_object_has_both_constants_and_properties(
-        Object $object
+        Objekt $object
     ) {
         $object->allConstants()->willReturn([1]);
         $object->allProperties()->willReturn([2]);
@@ -41,7 +41,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
     }
 
     function it_needs_line_after_constants_if_object_has_both_constants_and_methods(
-        Object $object
+        Objekt $object
     ) {
         $object->allConstants()->willReturn([1]);
         $object->allProperties()->willReturn([]);
@@ -50,7 +50,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($object, self::CONSTANT_BLOCK)->shouldBe(true);
     }
 
-    function it_needs_line_after_properties_if_object_has_both_properties_and_methods(Object $object)
+    function it_needs_line_after_properties_if_object_has_both_properties_and_methods(Objekt $object)
     {
         $object->allConstants()->willReturn([]);
         $object->allProperties()->willReturn([1]);
