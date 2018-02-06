@@ -61,12 +61,19 @@ class Type extends \Twig_Extension
 
     public function filterNamespace(string $stringType) : string
     {
+        $nullablePrefix = substr($stringType, 0, 1) === '?'
+            ? '?'
+            : '';
+
+        $stringType = ltrim(ltrim($stringType, '?'));
+
         $type = new ModelType($stringType);
         if (!$type->isObject()) {
-            return $stringType;
+            return $nullablePrefix.$stringType;
         }
+
         $fullyQualifiedName = new FullyQualifiedName($stringType);
 
-        return $fullyQualifiedName->getName();
+        return $nullablePrefix.$fullyQualifiedName->getName();
     }
 }

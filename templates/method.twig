@@ -5,6 +5,6 @@
     function {{ method.name }}({% include 'collection/argument_collection.twig' with {
         'argument_collection': method.allArguments,
         'length_restriction': 22 + method.name | length
-    } only %}){{ method.returnType is not empty ? ' : ' ~ method.returnType : '' -}}
+    } only %}){{ method.returnType is not empty ? ' : ' ~ method.returnType|filter_namespace : '' -}}
     {%- include 'method_body.twig' with { 'method': method } only %}
 {#- Trimming lines -#}
