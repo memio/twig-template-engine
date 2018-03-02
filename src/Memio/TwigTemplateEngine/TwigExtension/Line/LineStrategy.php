@@ -15,10 +15,10 @@ use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 interface LineStrategy
 {
-    public function supports($model) : bool;
+    public function supports($model): bool;
 
     /**
      * @throws InvalidArgumentException If the block isn't supported
      */
-    public function needsLineAfter($model, string $block) : bool;
+    public function needsLineAfter($model, string $block): bool;
 }

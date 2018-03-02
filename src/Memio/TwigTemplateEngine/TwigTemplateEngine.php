@@ -27,7 +27,7 @@ class TwigTemplateEngine implements TemplateEngine
         $this->twig->getLoader()->prependPath($path);
     }
 
-    public function render(string $template, array $parameters = []) : string
+    public function render(string $template, array $parameters = []): string
     {
         return $this->twig->render($template.'.twig', $parameters);
     }

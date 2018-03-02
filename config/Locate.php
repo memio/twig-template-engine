@@ -13,7 +13,7 @@ namespace Memio\TwigTemplateEngine\Config;
 
 class Locate
 {
-    public static function templates() : string
+    public static function templates(): string
     {
         return __DIR__.'/../templates';
     }

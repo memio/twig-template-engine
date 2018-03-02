@@ -16,12 +16,12 @@ use Memio\Model\File;
 
 class FileLineStrategy implements LineStrategy
 {
-    public function supports($model) : bool
+    public function supports($model): bool
     {
         return $model instanceof File;
     }
 
-    public function needsLineAfter($model, string $block) : bool
+    public function needsLineAfter($model, string $block): bool
     {
         $fullyQualifiedNames = $model->allFullyQualifiedNames();
         if ('fully_qualified_names' === $block) {

@@ -16,12 +16,12 @@ use Memio\Model\Objekt;
 
 class ObjectLineStrategy implements LineStrategy
 {
-    public function supports($model) : bool
+    public function supports($model): bool
     {
         return $model instanceof Objekt;
     }
 
-    public function needsLineAfter($model, string $block) : bool
+    public function needsLineAfter($model, string $block): bool
     {
         $constants = $model->allConstants();
         $properties = $model->allProperties();

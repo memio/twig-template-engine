@@ -15,12 +15,12 @@ use Memio\Model\Phpdoc\MethodPhpdoc;
 
 class MethodPhpdocLineStrategy implements LineStrategy
 {
-    public function supports($model) : bool
+    public function supports($model): bool
     {
         return $model instanceof MethodPhpdoc;
     }
 
-    public function needsLineAfter($model, string $block) : bool
+    public function needsLineAfter($model, string $block): bool
     {
         $parameterTags = $model->getParameterTags();
         $throwTags = $model->getThrowTags();

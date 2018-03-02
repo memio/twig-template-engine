@@ -16,12 +16,12 @@ use Memio\Model\Contract;
 
 class ContractLineStrategy implements LineStrategy
 {
-    public function supports($model) : bool
+    public function supports($model): bool
     {
         return $model instanceof Contract;
     }
 
-    public function needsLineAfter($model, string $block) : bool
+    public function needsLineAfter($model, string $block): bool
     {
         $constants = $model->allConstants();
         $methods = $model->allMethods();

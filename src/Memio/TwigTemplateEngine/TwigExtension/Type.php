@@ -18,38 +18,38 @@ use Memio\Model\Type as ModelType;
 
 class Type extends \Twig_Extension
 {
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new \Twig_SimpleFilter('filter_namespace', [$this, 'filterNamespace']),
         ];
     }
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new \Twig_SimpleFunction('has_typehint', [$this, 'hasTypehint']),
         ];
     }
 
-    public function getTests() : array
+    public function getTests(): array
     {
         return [
             new \Twig_SimpleTest('contract', [$this, 'isContract']),
         ];
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return 'type';
     }
 
-    public function isContract($model) : bool
+    public function isContract($model): bool
     {
         return $model instanceof Contract;
     }
 
-    public function hasTypehint($model) : bool
+    public function hasTypehint($model): bool
     {
         if (!$model instanceof Argument) {
             return false;
@@ -59,9 +59,9 @@ class Type extends \Twig_Extension
         return $type->hasTypehint();
     }
 
-    public function filterNamespace(string $stringType) : string
+    public function filterNamespace(string $stringType): string
     {
-        $nullablePrefix = substr($stringType, 0, 1) === '?'
+        $nullablePrefix = '?' === substr($stringType, 0, 1)
             ? '?'
             : '';
 

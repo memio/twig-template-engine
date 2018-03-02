@@ -25,14 +25,14 @@ class Whitespace extends \Twig_Extension
         $this->line = $line;
     }
 
-    public function getFunctions() : array
+    public function getFunctions(): array
     {
         return [
             new \Twig_SimpleFunction('needs_line_after', [$this->line, 'needsLineAfter']),
         ];
     }
 
-    public function getFilters() : array
+    public function getFilters(): array
     {
         return [
             new \Twig_SimpleFilter('align', [$this, 'align']),
@@ -40,7 +40,7 @@ class Whitespace extends \Twig_Extension
         ];
     }
 
-    public function align(string $current, array $collection) : string
+    public function align(string $current, array $collection): string
     {
         $elementLength = strlen($current);
         $longestElement = $elementLength;
@@ -63,7 +63,7 @@ class Whitespace extends \Twig_Extension
         string $text,
         int $level = 1,
         string $type = 'code'
-    ) : string {
+    ): string {
         $lines = explode("\n", $text);
         $indentedLines = [];
         if ('code' === $type) {
@@ -84,7 +84,7 @@ class Whitespace extends \Twig_Extension
         return implode("\n", $indentedLines);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return 'whitespace';
     }

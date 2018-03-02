@@ -25,7 +25,7 @@ class Line
     /**
      * @throws InvalidArgumentException If no strategy supports the given model
      */
-    public function needsLineAfter($model, string $block) : bool
+    public function needsLineAfter($model, string $block): bool
     {
         foreach ($this->strategies as $strategy) {
             if ($strategy->supports($model)) {
