@@ -16,7 +16,7 @@ This package, `TwigTemplateEngine`, provides an implementation and templates for
 
 Install it using [Composer](https://getcomposer.org/download):
 
-    composer require memio/twig-template-engine:^2.0@alpha
+    composer require memio/twig-template-engine:^2.0
 
 ## Example
 
@@ -28,7 +28,7 @@ We're going to generate a class with a constructor and two attributes:
 require __DIR__.'/vendor/autoload.php';
 
 use Memio\Model\File;
-use Memio\Model\Object;
+use Memio\Model\Objekt;
 use Memio\Model\Property;
 use Memio\Model\Method;
 use Memio\Model\Argument;
@@ -53,7 +53,7 @@ $prettyPrinter = new Memio\PrettyPrinter\PrettyPrinter($templateEngine);
 // Describe the code you want to generate using "Models"
 $myService = (new File('src/Vendor/Project/MyService.php'))
     ->setStructure(
-        (new Object('Vendor\Project\MyService'))
+        (new Objekt('Vendor\Project\MyService'))
             ->addProperty(new Property('createdAt'))
             ->addProperty(new Property('filename'))
             ->addMethod(
