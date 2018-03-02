@@ -15,26 +15,17 @@ use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class Line
 {
-    /**
-     * @var array
-     */
-    private $strategies = array();
+    private $strategies = [];
 
-    /**
-     * @param LineStrategy $lineStrategy
-     */
     public function add(LineStrategy $lineStrategy)
     {
         $this->strategies[] = $lineStrategy;
     }
 
     /**
-     * @param mixed  $model
-     * @param string $block
-     *
      * @throws InvalidArgumentException If no strategy supports the given model
      */
-    public function needsLineAfter($model, $block)
+    public function needsLineAfter($model, string $block): bool
     {
         foreach ($this->strategies as $strategy) {
             if ($strategy->supports($model)) {

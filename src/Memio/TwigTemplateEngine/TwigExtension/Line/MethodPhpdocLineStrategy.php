@@ -15,18 +15,12 @@ use Memio\Model\Phpdoc\MethodPhpdoc;
 
 class MethodPhpdocLineStrategy implements LineStrategy
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function supports($model)
+    public function supports($model): bool
     {
         return $model instanceof MethodPhpdoc;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function needsLineAfter($model, $block)
+    public function needsLineAfter($model, string $block): bool
     {
         $parameterTags = $model->getParameterTags();
         $throwTags = $model->getThrowTags();
@@ -39,19 +33,19 @@ class MethodPhpdocLineStrategy implements LineStrategy
         $hasThrowTags = (!empty($throwTags));
 
         if ('description' === $block) {
-            return ($hasDescription && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasParameterTags || $hasThrowTags));
+            return $hasDescription && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasParameterTags || $hasThrowTags);
         }
         if ('parameter_tags' === $block) {
-            return ($hasParameterTags && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasThrowTags));
+            return $hasParameterTags && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasThrowTags);
         }
         if ('deprecation_tag' === $block) {
-            return ($hasDeprecationTag && ($hasReturnTag || $hasApiTag || $hasThrowTags));
+            return $hasDeprecationTag && ($hasReturnTag || $hasApiTag || $hasThrowTags);
         }
         if ('return_tag' === $block) {
-            return ($hasReturnTag && ($hasApiTag || $hasThrowTags));
+            return $hasReturnTag && ($hasApiTag || $hasThrowTags);
         }
         if ('throw_tags' === $block) {
-            return ($hasThrowTags && $hasApiTag);
+            return $hasThrowTags && $hasApiTag;
         }
     }
 }

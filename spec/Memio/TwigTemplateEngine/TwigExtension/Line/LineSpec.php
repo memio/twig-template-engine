@@ -12,6 +12,7 @@
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
 use Memio\Model\Argument;
+use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
@@ -25,20 +26,24 @@ class LineSpec extends ObjectBehavior
         $this->add($lineStrategy);
     }
 
-    function it_executes_the_first_strategy_that_supports_given_model(Argument $model, LineStrategy $lineStrategy)
-    {
+    function it_executes_the_first_strategy_that_supports_given_model(
+        Argument $model,
+        LineStrategy $lineStrategy
+    ) {
         $lineStrategy->supports($model)->willReturn(true);
         $lineStrategy->needsLineAfter($model, self::BLOCK)->willReturn(self::STRATEGY_RETURN);
 
         $this->needsLineAfter($model, self::BLOCK)->shouldBe(self::STRATEGY_RETURN);
     }
 
-    function it_fails_when_no_strategy_supports_given_model(Argument $model, LineStrategy $lineStrategy)
-    {
-        $exception = 'Memio\PrettyPrinter\Exception\InvalidArgumentException';
-
+    function it_fails_when_no_strategy_supports_given_model(
+        Argument $model,
+        LineStrategy $lineStrategy
+    ) {
         $lineStrategy->supports($model)->willReturn(false);
 
-        $this->shouldThrow($exception)->duringNeedsLineAfter($model, self::BLOCK);
+        $this->shouldThrow(
+            InvalidArgumentException::class
+        )->duringNeedsLineAfter($model, self::BLOCK);
     }
 }

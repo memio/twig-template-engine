@@ -12,6 +12,7 @@
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
 use Memio\Model\Contract;
+use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class ContractLineStrategySpec extends ObjectBehavior
@@ -20,7 +21,7 @@ class ContractLineStrategySpec extends ObjectBehavior
 
     function it_is_a_line_strategy()
     {
-        $this->shouldImplement('Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy');
+        $this->shouldImplement(LineStrategy::class);
     }
 
     function it_supports_contracts(Contract $contract)
@@ -28,10 +29,11 @@ class ContractLineStrategySpec extends ObjectBehavior
         $this->supports($contract)->shouldBe(true);
     }
 
-    function it_needs_line_after_constants_if_contract_has_both_constants_and_methods(Contract $contract)
-    {
-        $contract->allConstants()->willReturn(array(1));
-        $contract->allMethods()->willReturn(array(2));
+    function it_needs_line_after_constants_if_contract_has_both_constants_and_methods(
+        Contract $contract
+    ) {
+        $contract->allConstants()->willReturn([1]);
+        $contract->allMethods()->willReturn([2]);
 
         $this->needsLineAfter($contract, self::CONSTANT_BLOCK)->shouldBe(true);
     }

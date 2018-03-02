@@ -12,35 +12,22 @@
 namespace Memio\TwigTemplateEngine;
 
 use Memio\PrettyPrinter\TemplateEngine;
-use Twig_Environment;
 
 class TwigTemplateEngine implements TemplateEngine
 {
-    /**
-     * @var Twig_Environment
-     */
     private $twig;
 
-    /**
-     * @param Twig_Environment $twig
-     */
-    public function __construct(Twig_Environment $twig)
+    public function __construct(\Twig_Environment $twig)
     {
         $this->twig = $twig;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function addPath($path)
+    public function addPath(string $path)
     {
         $this->twig->getLoader()->prependPath($path);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function render($template, array $parameters = array())
+    public function render(string $template, array $parameters = []): string
     {
         return $this->twig->render($template.'.twig', $parameters);
     }

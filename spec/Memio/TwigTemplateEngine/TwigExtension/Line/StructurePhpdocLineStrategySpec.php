@@ -15,13 +15,14 @@ use Memio\Model\Phpdoc\StructurePhpdoc;
 use Memio\Model\Phpdoc\ApiTag;
 use Memio\Model\Phpdoc\Description;
 use Memio\Model\Phpdoc\DeprecationTag;
+use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class StructurePhpdocLineStrategySpec extends ObjectBehavior
 {
     function it_is_a_line_strategy()
     {
-        $this->shouldImplement('Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy');
+        $this->shouldImplement(LineStrategy::class);
     }
 
     function it_supports_structure_phpdocs(StructurePhpdoc $structurePhpdoc)
@@ -34,8 +35,7 @@ class StructurePhpdocLineStrategySpec extends ObjectBehavior
         Description $description,
         DeprecationTag $deprecationTag,
         StructurePhpdoc $structurePhpdoc
-    )
-    {
+    ) {
         $structurePhpdoc->getApiTag()->willReturn($apiTag);
         $structurePhpdoc->getDescription()->willReturn($description);
         $structurePhpdoc->getDeprecationTag()->willReturn($deprecationTag);
@@ -48,8 +48,7 @@ class StructurePhpdocLineStrategySpec extends ObjectBehavior
         Description $description,
         DeprecationTag $deprecationTag,
         StructurePhpdoc $structurePhpdoc
-    )
-    {
+    ) {
         $structurePhpdoc->getApiTag()->willReturn($apiTag);
         $structurePhpdoc->getDescription()->willReturn($description);
         $structurePhpdoc->getDeprecationTag()->willReturn($deprecationTag);

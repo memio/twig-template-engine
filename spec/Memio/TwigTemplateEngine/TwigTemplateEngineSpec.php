@@ -11,9 +11,8 @@
 
 namespace spec\Memio\TwigTemplateEngine;
 
+use Memio\PrettyPrinter\TemplateEngine;
 use PhpSpec\ObjectBehavior;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 
 class TwigTemplateEngineSpec extends ObjectBehavior
 {
@@ -21,27 +20,30 @@ class TwigTemplateEngineSpec extends ObjectBehavior
     const TEMPLATE = 'argument';
     const OUTPUT = '$dateTime';
 
-    function let(Twig_Environment $twig)
+    function let(\Twig_Environment $twig)
     {
         $this->beConstructedWith($twig);
     }
 
     function it_is_a_template_engine()
     {
-        $this->shouldHaveType('Memio\PrettyPrinter\TemplateEngine');
+        $this->shouldHaveType(TemplateEngine::class);
     }
 
-    function it_can_have_more_paths(Twig_Environment $twig, Twig_Loader_Filesystem $loader)
-    {
+    function it_can_have_more_paths(
+        \Twig_Environment $twig,
+        \Twig_Loader_Filesystem $loader
+    ) {
         $twig->getLoader()->willReturn($loader);
         $loader->prependPath(self::TEMPLATE_PATH)->shouldBeCalled();
 
         $this->addPath(self::TEMPLATE_PATH);
     }
 
-    function it_renders_templates_using_twig(Twig_Environment $twig)
-    {
-        $parameters = array('name' => 'dateTime');
+    function it_renders_templates_using_twig(
+        \Twig_Environment $twig
+    ) {
+        $parameters = ['name' => 'dateTime'];
 
         $twig->render(self::TEMPLATE.'.twig', $parameters)->willReturn(self::OUTPUT);
 

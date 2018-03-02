@@ -12,31 +12,25 @@
 namespace Memio\TwigTemplateEngine\TwigExtension\Line;
 
 use Memio\PrettyPrinter\Exception\InvalidArgumentException;
-use Memio\Model\Object;
+use Memio\Model\Objekt;
 
 class ObjectLineStrategy implements LineStrategy
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function supports($model)
+    public function supports($model): bool
     {
-        return $model instanceof Object;
+        return $model instanceof Objekt;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function needsLineAfter($model, $block)
+    public function needsLineAfter($model, string $block): bool
     {
         $constants = $model->allConstants();
         $properties = $model->allProperties();
         $methods = $model->allMethods();
         if ('constants' === $block) {
-            return (!empty($constants) && (!empty($properties) || !empty($methods)));
+            return !empty($constants) && (!empty($properties) || !empty($methods));
         }
         if ('properties' === $block) {
-            return (!empty($properties) && !empty($methods));
+            return !empty($properties) && !empty($methods);
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');

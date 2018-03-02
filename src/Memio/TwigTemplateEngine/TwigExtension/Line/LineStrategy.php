@@ -11,20 +11,14 @@
 
 namespace Memio\TwigTemplateEngine\TwigExtension\Line;
 
+use Memio\PrettyPrinter\Exception\InvalidArgumentException;
+
 interface LineStrategy
 {
-    /**
-     * @param mixed $model
-     *
-     * @return bool
-     */
-    public function supports($model);
+    public function supports($model): bool;
 
     /**
-     * @param mixed  $model
-     * @param string $block
-     *
-     * @throws \Memio\PrettyPrinter\Exception\InvalidArgumentException If the block isn't supported
+     * @throws InvalidArgumentException If the block isn't supported
      */
-    public function needsLineAfter($model, $block);
+    public function needsLineAfter($model, string $block): bool;
 }

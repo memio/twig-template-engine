@@ -16,13 +16,14 @@ use Memio\Model\Phpdoc\ApiTag;
 use Memio\Model\Phpdoc\Description;
 use Memio\Model\Phpdoc\DeprecationTag;
 use Memio\Model\Phpdoc\ParameterTag;
+use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class MethodPhpdocLineStrategySpec extends ObjectBehavior
 {
     function it_is_a_line_strategy()
     {
-        $this->shouldImplement('Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy');
+        $this->shouldImplement(LineStrategy::class);
     }
 
     function it_supports_method_phpdocs(MethodPhpdoc $methodPhpdoc)
@@ -34,14 +35,13 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         Description $description,
         DeprecationTag $deprecationTag,
         MethodPhpdoc $methodPhpdoc
-    )
-    {
+    ) {
         $methodPhpdoc->getApiTag()->willReturn(null);
         $methodPhpdoc->getDescription()->willReturn($description);
         $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
-        $methodPhpdoc->getParameterTags()->willReturn(null);
+        $methodPhpdoc->getParameterTags()->willReturn([]);
         $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn(null);
+        $methodPhpdoc->getThrowTags()->willReturn([]);
 
         $this->needsLineAfter($methodPhpdoc, 'description')->shouldBe(true);
     }
@@ -50,14 +50,13 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         DeprecationTag $deprecationTag,
         MethodPhpdoc $methodPhpdoc,
         ParameterTag $parameterTag
-    )
-    {
+    ) {
         $methodPhpdoc->getApiTag()->willReturn(null);
         $methodPhpdoc->getDescription()->willReturn(null);
         $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
-        $methodPhpdoc->getParameterTags()->willReturn(array($parameterTag));
+        $methodPhpdoc->getParameterTags()->willReturn([$parameterTag]);
         $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn(null);
+        $methodPhpdoc->getThrowTags()->willReturn([]);
 
         $this->needsLineAfter($methodPhpdoc, 'parameter_tags')->shouldBe(true);
     }
@@ -66,14 +65,13 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         ApiTag $apiTag,
         DeprecationTag $deprecationTag,
         MethodPhpdoc $methodPhpdoc
-    )
-    {
+    ) {
         $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
         $methodPhpdoc->getDescription()->willReturn(null);
         $methodPhpdoc->getApiTag()->willReturn($apiTag);
-        $methodPhpdoc->getParameterTags()->willReturn(null);
+        $methodPhpdoc->getParameterTags()->willReturn([]);
         $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn(null);
+        $methodPhpdoc->getThrowTags()->willReturn([]);
 
         $this->needsLineAfter($methodPhpdoc, 'deprecation_tag')->shouldBe(true);
     }

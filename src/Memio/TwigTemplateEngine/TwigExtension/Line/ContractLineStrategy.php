@@ -16,23 +16,17 @@ use Memio\Model\Contract;
 
 class ContractLineStrategy implements LineStrategy
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function supports($model)
+    public function supports($model): bool
     {
         return $model instanceof Contract;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function needsLineAfter($model, $block)
+    public function needsLineAfter($model, string $block): bool
     {
         $constants = $model->allConstants();
         $methods = $model->allMethods();
         if ('constants' === $block) {
-            return (!empty($constants) && !empty($methods));
+            return !empty($constants) && !empty($methods);
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');
