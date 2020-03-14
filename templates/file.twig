@@ -17,5 +17,5 @@ namespace {{ file.namespace }};
 {% if file.structure is contract %}
 {% include 'contract.twig' with { 'contract': file.structure } only %}
 {% else %}
-{% include 'object.twig' with { 'object': file.structure } only %}
+{% include 'objekt.twig' with { 'objekt': file.structure } only %}
 {% endif %}
