@@ -15,27 +15,31 @@ use Memio\Model\Argument;
 use Memio\Model\Contract;
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Type as ModelType;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
+use Twig\TwigTest;
 
-class Type extends \Twig_Extension
+class Type extends AbstractExtension
 {
     public function getFilters(): array
     {
         return [
-            new \Twig_SimpleFilter('filter_namespace', [$this, 'filterNamespace']),
+            new TwigFilter('filter_namespace', [$this, 'filterNamespace']),
         ];
     }
 
     public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('has_typehint', [$this, 'hasTypehint']),
+            new TwigFunction('has_typehint', [$this, 'hasTypehint']),
         ];
     }
 
     public function getTests(): array
     {
         return [
-            new \Twig_SimpleTest('contract', [$this, 'isContract']),
+            new TwigTest('contract', [$this, 'isContract']),
         ];
     }
 

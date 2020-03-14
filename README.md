@@ -34,8 +34,8 @@ use Memio\Model\Method;
 use Memio\Model\Argument;
 
 // Initialize the code generator
-$loader = new \Twig_Loader_Filesystem(__DIR__.'/templates');
-$twig = new \Twig_Environment($loader);
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/templates');
+$twig = new \Twig\Environment($loader);
 
 $line = new Memio\TwigTemplateEngine\TwigExtension\Line\Line();
 $line->add(new Memio\TwigTemplateEngine\TwigExtension\Line\ContractLineStrategy());

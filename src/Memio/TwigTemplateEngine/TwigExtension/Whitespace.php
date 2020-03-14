@@ -15,8 +15,11 @@ use Memio\Model\FullyQualifiedName;
 use Memio\Model\Phpdoc\ParameterTag;
 use Memio\Model\Type as ModelType;
 use Memio\TwigTemplateEngine\TwigExtension\Line\Line;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
-class Whitespace extends \Twig_Extension
+class Whitespace extends AbstractExtension
 {
     private $line;
 
@@ -28,15 +31,15 @@ class Whitespace extends \Twig_Extension
     public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('needs_line_after', [$this->line, 'needsLineAfter']),
+            new TwigFunction('needs_line_after', [$this->line, 'needsLineAfter']),
         ];
     }
 
     public function getFilters(): array
     {
         return [
-            new \Twig_SimpleFilter('align', [$this, 'align']),
-            new \Twig_SimpleFilter('indent', [$this, 'indent']),
+            new TwigFilter('align', [$this, 'align']),
+            new TwigFilter('indent', [$this, 'indent']),
         ];
     }
 
