@@ -12,12 +12,13 @@
 namespace Memio\TwigTemplateEngine;
 
 use Memio\PrettyPrinter\TemplateEngine;
+use Twig\Environment;
 
 class TwigTemplateEngine implements TemplateEngine
 {
     private $twig;
 
-    public function __construct(\Twig_Environment $twig)
+    public function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }
