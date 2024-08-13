@@ -16,6 +16,7 @@ use Memio\Model\Phpdoc\ApiTag;
 use Memio\Model\Phpdoc\Description;
 use Memio\Model\Phpdoc\DeprecationTag;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
+use Memio\TwigTemplateEngine\TwigExtension\Line\StructurePhpdocLineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class StructurePhpdocLineStrategySpec extends ObjectBehavior
@@ -25,34 +26,40 @@ class StructurePhpdocLineStrategySpec extends ObjectBehavior
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_structure_phpdocs(StructurePhpdoc $structurePhpdoc)
+    function it_supports_structure_phpdocs()
     {
+        $structurePhpdoc = new StructurePhpdoc();
+
         $this->supports($structurePhpdoc)->shouldBe(true);
     }
 
-    function it_needs_line_after_description_if_description_and_deprecation_or_api_are_defined(
-        ApiTag $apiTag,
-        Description $description,
-        DeprecationTag $deprecationTag,
-        StructurePhpdoc $structurePhpdoc
-    ) {
-        $structurePhpdoc->getApiTag()->willReturn($apiTag);
-        $structurePhpdoc->getDescription()->willReturn($description);
-        $structurePhpdoc->getDeprecationTag()->willReturn($deprecationTag);
+    function it_needs_an_empty_line_after_description_if_it_also_has_an_api_tag()
+    {
+        $structurePhpdoc = (new StructurePhpdoc())
+            ->setDescription(new Description('helpful description'))
+            ->setApiTag(new ApiTag())
+        ;
 
-        $this->needsLineAfter($structurePhpdoc, 'description')->shouldBe(true);
+        $this->needsLineAfter($structurePhpdoc, StructurePhpdocLineStrategy::DESCRPTION)->shouldBe(true);
     }
 
-    function it_needs_line_after_deprecation_if_deprecation_and_api_are_defined(
-        ApiTag $apiTag,
-        Description $description,
-        DeprecationTag $deprecationTag,
-        StructurePhpdoc $structurePhpdoc
-    ) {
-        $structurePhpdoc->getApiTag()->willReturn($apiTag);
-        $structurePhpdoc->getDescription()->willReturn($description);
-        $structurePhpdoc->getDeprecationTag()->willReturn($deprecationTag);
+    function it_needs_an_empty_line_after_description_if_it_also_has_a_deprecation_tag()
+    {
+        $structurePhpdoc = (new StructurePhpdoc())
+            ->setDescription(new Description('helpful description'))
+            ->setDeprecationTag(new DeprecationTag())
+        ;
 
-        $this->needsLineAfter($structurePhpdoc, 'deprecation_tag')->shouldBe(true);
+        $this->needsLineAfter($structurePhpdoc, StructurePhpdocLineStrategy::DESCRPTION)->shouldBe(true);
+    }
+
+    function it_needs_an_empty_line_after_deprecation_tag_if_it_also_has_an_api_tag()
+    {
+        $structurePhpdoc = (new StructurePhpdoc())
+            ->setDeprecationTag(new DeprecationTag())
+            ->setApiTag(new ApiTag())
+        ;
+
+        $this->needsLineAfter($structurePhpdoc, StructurePhpdocLineStrategy::DEPRECATION_TAG)->shouldBe(true);
     }
 }

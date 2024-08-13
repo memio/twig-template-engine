@@ -11,30 +11,34 @@
 
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
+use Memio\Model\Constant;
 use Memio\Model\Contract;
+use Memio\Model\Method;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
+use Memio\TwigTemplateEngine\TwigExtension\Line\ContractLineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class ContractLineStrategySpec extends ObjectBehavior
 {
-    const CONSTANT_BLOCK = 'constants';
-
     function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_contracts(Contract $contract)
+    function it_supports_contracts()
     {
+        $contract = (new Contract('Memio\PrettyPrinter\TemplateEngine'));
+
         $this->supports($contract)->shouldBe(true);
     }
 
-    function it_needs_line_after_constants_if_contract_has_both_constants_and_methods(
-        Contract $contract
-    ) {
-        $contract->allConstants()->willReturn([1]);
-        $contract->allMethods()->willReturn([2]);
+    function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
+    {
+        $contract = (new Contract('Memio\PrettyPrinter\TemplateEngine'))
+            ->addConstant(new Constant('CONSTANT_ONE', 1))
+            ->addMethod(new Method('methodOne'))
+        ;
 
-        $this->needsLineAfter($contract, self::CONSTANT_BLOCK)->shouldBe(true);
+        $this->needsLineAfter($contract, ContractLineStrategy::CONSTANTS_BLOCK)->shouldBe(true);
     }
 }

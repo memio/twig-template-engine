@@ -16,6 +16,8 @@ use Memio\Model\File;
 
 class FileLineStrategy implements LineStrategy
 {
+    const USE_STATEMENTS_BLOCK = 'fully_qualified_names';
+
     public function supports($model): bool
     {
         return $model instanceof File;
@@ -23,9 +25,8 @@ class FileLineStrategy implements LineStrategy
 
     public function needsLineAfter($model, string $block): bool
     {
-        $fullyQualifiedNames = $model->allFullyQualifiedNames();
-        if ('fully_qualified_names' === $block) {
-            return !empty($fullyQualifiedNames);
+        if (self::USE_STATEMENTS_BLOCK === $block) {
+            return [] !== $model->fullyQualifiedNames;
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');

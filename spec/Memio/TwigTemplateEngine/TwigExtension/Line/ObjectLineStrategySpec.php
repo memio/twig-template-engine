@@ -12,50 +12,55 @@
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
 use Memio\Model\Objekt;
+use Memio\Model\Constant;
+use Memio\Model\Method;
+use Memio\Model\Property;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
+use Memio\TwigTemplateEngine\TwigExtension\Line\ObjectLineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class ObjectLineStrategySpec extends ObjectBehavior
 {
-    const CONSTANT_BLOCK = 'constants';
-    const PROPERTY_BLOCK = 'properties';
-
     function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_objects(Objekt $object)
+    function it_supports_objects()
     {
-        $this->supports($object)->shouldBe(true);
+        $objekt = new Objekt('Memio\Model\Objekt');
+
+        $this->supports($objekt)->shouldBe(true);
     }
 
-    function it_needs_line_after_constants_if_object_has_both_constants_and_properties(
-        Objekt $object
-    ) {
-        $object->allConstants()->willReturn([1]);
-        $object->allProperties()->willReturn([2]);
-        $object->allMethods()->willReturn([]);
-
-        $this->needsLineAfter($object, self::CONSTANT_BLOCK)->shouldBe(true);
-    }
-
-    function it_needs_line_after_constants_if_object_has_both_constants_and_methods(
-        Objekt $object
-    ) {
-        $object->allConstants()->willReturn([1]);
-        $object->allProperties()->willReturn([]);
-        $object->allMethods()->willReturn([2]);
-
-        $this->needsLineAfter($object, self::CONSTANT_BLOCK)->shouldBe(true);
-    }
-
-    function it_needs_line_after_properties_if_object_has_both_properties_and_methods(Objekt $object)
+    function it_needs_an_empty_line_after_constants_if_it_also_has_properties()
     {
-        $object->allConstants()->willReturn([]);
-        $object->allProperties()->willReturn([1]);
-        $object->allMethods()->willReturn([2]);
+        $objekt = (new Objekt('Memio\Model\Objekt'))
+            ->addConstant(new Constant('CONSTANT_ONE', 1))
+            ->addProperty(new Property('filename'))
+            ->addProperty(new Property('content'))
+        ;
 
-        $this->needsLineAfter($object, self::PROPERTY_BLOCK)->shouldBe(true);
+        $this->needsLineAfter($objekt, ObjectLineStrategy::CONSTANTS_BLOCK)->shouldBe(true);
+    }
+
+    function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
+    {
+        $objekt = (new Objekt('Memio\Model\Objekt'))
+            ->addConstant(new Constant('CONSTANT_ONE', 1))
+            ->addMethod(new Method('write'))
+        ;
+
+        $this->needsLineAfter($objekt, ObjectLineStrategy::CONSTANTS_BLOCK)->shouldBe(true);
+    }
+
+    function it_needs_an_empty_line_after_properties_if_it_also_has_methods()
+    {
+        $objekt = (new Objekt('Memio\Model\Objekt'))
+            ->addProperty(new Property('filename'))
+            ->addMethod(new Method('write'))
+        ;
+
+        $this->needsLineAfter($objekt, ObjectLineStrategy::PROPERTIES_BLOCK)->shouldBe(true);
     }
 }

@@ -16,6 +16,8 @@ use Memio\Model\Contract;
 
 class ContractLineStrategy implements LineStrategy
 {
+    const CONSTANTS_BLOCK = 'constants';
+
     public function supports($model): bool
     {
         return $model instanceof Contract;
@@ -23,10 +25,8 @@ class ContractLineStrategy implements LineStrategy
 
     public function needsLineAfter($model, string $block): bool
     {
-        $constants = $model->allConstants();
-        $methods = $model->allMethods();
-        if ('constants' === $block) {
-            return !empty($constants) && !empty($methods);
+        if (self::CONSTANTS_BLOCK === $block) {
+            return [] !== $model->constants && [] !== $model->methods;
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');
