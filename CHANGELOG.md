@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.0.0: PHP 7.2 requirement, PHP 8 and phpspec 7 support
+
+* dropped support for PHP < 7.2
+* added support for PHP 8
+* added support for phpspec 7
+
 ## 2.0.0-alpha3: Allowed Twig v2
 
 * added support for Twig 2
