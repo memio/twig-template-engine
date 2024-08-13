@@ -26,10 +26,5 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.10",
         "phpspec/phpspec": "^4.3"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.1-dev"
-        }
     }
 }
