@@ -1,4 +1,4 @@
-# Memio's TwigTemplateEngine [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d36f6c6e-c3c1-44f5-9573-c76ad99c0253/mini.png)](https://insight.sensiolabs.com/projects/d36f6c6e-c3c1-44f5-9573-c76ad99c0253) [![Travis CI](https://travis-ci.org/memio/twig-template-engine.png)](https://travis-ci.org/memio/twig-template-engine)
+# Memio's TwigTemplateEngine
 
 Memio is a highly opinionated PHP code generator library. It is composed of small
 independent packages, one being `PrettyPrinter`: the actual code generator.
@@ -16,7 +16,9 @@ This package, `TwigTemplateEngine`, provides an implementation and templates for
 
 Install it using [Composer](https://getcomposer.org/download):
 
-    composer require memio/twig-template-engine:^2.0
+```console
+composer require memio/twig-template-engine:^2.0
+```
 
 ## Example
 
@@ -73,7 +75,7 @@ echo $prettyPrinter->generateCode($myService);
 
 With this simple example, we get the following output:
 
-```
+```php
 <?php
 
 namespace Vendor\Project;
@@ -96,13 +98,15 @@ Have a look at [the main respository](http://github.com/memio/memio) to discover
 Memio uses [phpspec](http://phpspec.net/), which means the tests also provide the documentation.
 Not convinced? Then clone this repository and run the following commands:
 
-    composer install
-    ./vendor/bin/phpspec run -n -f pretty
+```console
+$ composer install
+$ ./vendor/bin/phpspec run -n -f pretty
+```
 
 You can see the current and past versions using one of the following:
 
 * the `git tag` command
-* the [releases page on Github](https://github.com/memio/memio/releases)
+* the [releases page on Github](https://github.com/memio/twig-template-engine/releases)
 * the file listing the [changes between versions](CHANGELOG.md)
 
 And finally some meta documentation:

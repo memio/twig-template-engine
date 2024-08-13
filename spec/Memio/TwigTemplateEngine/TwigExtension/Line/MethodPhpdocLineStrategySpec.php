@@ -26,52 +26,39 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_method_phpdocs(MethodPhpdoc $methodPhpdoc)
+    function it_supports_method_phpdocs()
     {
+        $methodPhpdoc = new MethodPhpdoc();
+
         $this->supports($methodPhpdoc)->shouldBe(true);
     }
 
-    function it_needs_line_after_description_if_it_has_any_other_tag(
-        Description $description,
-        DeprecationTag $deprecationTag,
-        MethodPhpdoc $methodPhpdoc
-    ) {
-        $methodPhpdoc->getApiTag()->willReturn(null);
-        $methodPhpdoc->getDescription()->willReturn($description);
-        $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
-        $methodPhpdoc->getParameterTags()->willReturn([]);
-        $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn([]);
+    function it_needs_a_new_line_after_description_if_it_has_any_other_tag()
+    {
+        $methodPhpdoc = (new MethodPhpdoc())
+            ->setDescription(new Description('Helpful description'))
+            ->setDeprecationTag(new DeprecationTag())
+        ;
 
         $this->needsLineAfter($methodPhpdoc, 'description')->shouldBe(true);
     }
 
-    function it_needs_line_after_parameter_tags_if_it_has_api_or_deprecation_tags(
-        DeprecationTag $deprecationTag,
-        MethodPhpdoc $methodPhpdoc,
-        ParameterTag $parameterTag
-    ) {
-        $methodPhpdoc->getApiTag()->willReturn(null);
-        $methodPhpdoc->getDescription()->willReturn(null);
-        $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
-        $methodPhpdoc->getParameterTags()->willReturn([$parameterTag]);
-        $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn([]);
+    function it_needs_a_new_line_after_parameter_tags_if_it_has_a_deprecation_tag()
+    {
+        $methodPhpdoc = (new MethodPhpdoc())
+            ->addParameterTag(new ParameterTag('string', 'filename'))
+            ->setDeprecationTag(new DeprecationTag())
+        ;
 
         $this->needsLineAfter($methodPhpdoc, 'parameter_tags')->shouldBe(true);
     }
 
-    function it_needs_line_after_deprecation_it_also_has_an_api_tag(
-        ApiTag $apiTag,
-        DeprecationTag $deprecationTag,
-        MethodPhpdoc $methodPhpdoc
-    ) {
-        $methodPhpdoc->getDeprecationTag()->willReturn($deprecationTag);
-        $methodPhpdoc->getDescription()->willReturn(null);
-        $methodPhpdoc->getApiTag()->willReturn($apiTag);
-        $methodPhpdoc->getParameterTags()->willReturn([]);
-        $methodPhpdoc->getReturnTag()->willReturn(null);
-        $methodPhpdoc->getThrowTags()->willReturn([]);
+    function it_needs_a_new_line_after_deprecation_if_it_also_has_an_api_tag()
+    {
+        $methodPhpdoc = (new MethodPhpdoc())
+            ->setDeprecationTag(new DeprecationTag())
+            ->setApiTag(new ApiTag())
+        ;
 
         $this->needsLineAfter($methodPhpdoc, 'deprecation_tag')->shouldBe(true);
     }

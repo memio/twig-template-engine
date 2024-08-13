@@ -22,15 +22,12 @@ class MethodPhpdocLineStrategy implements LineStrategy
 
     public function needsLineAfter($model, string $block): bool
     {
-        $parameterTags = $model->getParameterTags();
-        $throwTags = $model->getThrowTags();
-
-        $hasApiTag = (null !== $model->getApiTag());
-        $hasParameterTags = (!empty($parameterTags));
-        $hasDescription = (null !== $model->getDescription());
-        $hasDeprecationTag = (null !== $model->getDeprecationTag());
-        $hasReturnTag = (null !== $model->getReturnTag());
-        $hasThrowTags = (!empty($throwTags));
+        $hasApiTag = (null !== $model->apiTag);
+        $hasParameterTags = ([] !== $model->parameterTags);
+        $hasDescription = (null !== $model->description);
+        $hasDeprecationTag = (null !== $model->deprecationTag);
+        $hasReturnTag = (null !== $model->returnTag);
+        $hasThrowTags = ([] !== $model->throwTags);
 
         if ('description' === $block) {
             return $hasDescription && ($hasReturnTag || $hasApiTag || $hasDeprecationTag || $hasParameterTags || $hasThrowTags);

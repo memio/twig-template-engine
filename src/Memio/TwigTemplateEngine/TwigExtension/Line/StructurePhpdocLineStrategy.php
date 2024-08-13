@@ -15,6 +15,9 @@ use Memio\Model\Phpdoc\StructurePhpdoc;
 
 class StructurePhpdocLineStrategy implements LineStrategy
 {
+    const DESCRPTION = 'description';
+    const DEPRECATION_TAG = 'deprecation_tag';
+
     public function supports($model): bool
     {
         return $model instanceof StructurePhpdoc;
@@ -22,13 +25,14 @@ class StructurePhpdocLineStrategy implements LineStrategy
 
     public function needsLineAfter($model, string $block): bool
     {
-        $hasDescription = (null !== $model->getDescription());
-        $hasApiTag = (null !== $model->getApiTag());
-        $hasDeprecationTag = (null !== $model->getDeprecationTag());
-        if ('description' === $block) {
+        $hasDescription = (null !== $model->description);
+        $hasApiTag = (null !== $model->apiTag);
+        $hasDeprecationTag = (null !== $model->deprecationTag);
+
+        if (self::DESCRPTION === $block) {
             return $hasDescription && ($hasApiTag || $hasDeprecationTag);
         }
-        if ('deprecation_tag' === $block) {
+        if (self::DEPRECATION_TAG === $block) {
             return $hasApiTag && $hasDeprecationTag;
         }
     }

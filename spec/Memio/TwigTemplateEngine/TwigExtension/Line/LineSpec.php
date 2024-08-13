@@ -18,32 +18,32 @@ use PhpSpec\ObjectBehavior;
 
 class LineSpec extends ObjectBehavior
 {
-    const BLOCK = 'constants';
-    const STRATEGY_RETURN = true;
-
-    function let(LineStrategy $lineStrategy)
-    {
-        $this->add($lineStrategy);
-    }
-
     function it_executes_the_first_strategy_that_supports_given_model(
-        Argument $model,
         LineStrategy $lineStrategy
     ) {
-        $lineStrategy->supports($model)->willReturn(true);
-        $lineStrategy->needsLineAfter($model, self::BLOCK)->willReturn(self::STRATEGY_RETURN);
+        $this->add($lineStrategy);
 
-        $this->needsLineAfter($model, self::BLOCK)->shouldBe(self::STRATEGY_RETURN);
+        $model = new Argument('string', 'filename');
+        $block = 'arguments';
+        $strategyReturn = true;
+
+        $lineStrategy->supports($model)->willReturn(true);
+        $lineStrategy->needsLineAfter($model, $block)->willReturn($strategyReturn);
+
+        $this->needsLineAfter($model, $block)->shouldBe($strategyReturn);
     }
 
     function it_fails_when_no_strategy_supports_given_model(
-        Argument $model,
         LineStrategy $lineStrategy
     ) {
+        $this->add($lineStrategy);
+
+        $model = new Argument('string', 'filename');
+
         $lineStrategy->supports($model)->willReturn(false);
 
         $this->shouldThrow(
             InvalidArgumentException::class
-        )->duringNeedsLineAfter($model, self::BLOCK);
+        )->duringNeedsLineAfter($model, 'arguments');
     }
 }

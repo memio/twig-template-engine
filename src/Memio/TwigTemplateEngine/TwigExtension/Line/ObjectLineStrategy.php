@@ -16,6 +16,9 @@ use Memio\Model\Objekt;
 
 class ObjectLineStrategy implements LineStrategy
 {
+    const CONSTANTS_BLOCK = 'constants';
+    const PROPERTIES_BLOCK = 'properties';
+
     public function supports($model): bool
     {
         return $model instanceof Objekt;
@@ -23,14 +26,11 @@ class ObjectLineStrategy implements LineStrategy
 
     public function needsLineAfter($model, string $block): bool
     {
-        $constants = $model->allConstants();
-        $properties = $model->allProperties();
-        $methods = $model->allMethods();
-        if ('constants' === $block) {
-            return !empty($constants) && (!empty($properties) || !empty($methods));
+        if (self::CONSTANTS_BLOCK === $block) {
+            return [] !== $model->constants && ([] !== $model->properties || [] !== $model->methods);
         }
-        if ('properties' === $block) {
-            return !empty($properties) && !empty($methods);
+        if (self::PROPERTIES_BLOCK === $block) {
+            return [] !== $model->properties && [] !== $model->methods;
         }
 
         throw new InvalidArgumentException('The function needs_line_after does not support given "'.$block.'"');
