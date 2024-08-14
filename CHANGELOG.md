@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.1: Fixed templates
+
+* fixed templates
+
 ## 3.0.0: PHP 7.2 requirement, PHP 8 and phpspec 7 support
 
 * dropped support for PHP < 7.2
