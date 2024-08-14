@@ -1,22 +1,22 @@
-{% if objekt.phpdoc %}{% include 'phpdoc/structure_phpdoc.twig' with {'structure_phpdoc': objekt.phpdoc} %}{% endif %}
+{% if objekt.structurePhpdoc %}{% include 'phpdoc/structure_phpdoc.twig' with {'structure_phpdoc': objekt.structurePhpdoc} %}{% endif %}
 {{ objekt.isAbstract ? 'abstract ' }}{{ objekt.isFinal ? 'final ' }}class {{ objekt.name }}
-    {{- objekt.hasParent ? ' extends ' ~ objekt.Parent.name }}
-    {{- objekt.allContracts is not empty ? ' implements ' }}
-    {%- include 'collection/contract_collection.twig' with { 'contract_collection': objekt.allContracts } only %}
+    {{- objekt.hasParent ? ' extends ' ~ objekt.parent.name }}
+    {{- objekt.contracts is not empty ? ' implements ' }}
+    {%- include 'collection/contract_collection.twig' with { 'contract_collection': objekt.contracts } only %}
 {
 {% include 'collection/constant_collection.twig' with {
-    'constant_collection': objekt.allConstants
+    'constant_collection': objekt.constants
 } only %}
 {% if needs_line_after(objekt, 'constants') %}
 
 {% endif %}
 {% include 'collection/property_collection.twig' with {
-    'property_collection': objekt.allProperties
+    'property_collection': objekt.properties
 } only %}
 {% if needs_line_after(objekt, 'properties') %}
 
 {% endif %}
 {% include 'collection/method_collection.twig' with {
-    'method_collection': objekt.allMethods
+    'method_collection': objekt.methods
 } only %}
 }

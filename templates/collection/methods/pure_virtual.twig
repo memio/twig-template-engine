@@ -1,7 +1,7 @@
-{% if method.phpdoc %}{% include 'phpdoc/method_phpdoc.twig' with {'method_phpdoc': method.phpdoc} %}{% endif %}
+{% if method.methodPhpdoc %}{% include 'phpdoc/method_phpdoc.twig' with {'method_phpdoc': method.methodPhpdoc} %}{% endif %}
     {{ method.visibility ~ (method.visibility is not empty ? ' ') -}}
     function {{ method.name }}({% include 'collection/argument_collection.twig' with {
-        'argument_collection': method.allArguments,
+        'argument_collection': method.arguments,
         'length_restriction': 22 + method.name | length
     } only %}){{ method.returnType is not empty ? ' : ' ~ method.returnType|filter_namespace : '' -}};
 {#- Trimming lines -#}
