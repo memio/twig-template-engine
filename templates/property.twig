@@ -1,4 +1,4 @@
-{% if property.phpdoc %}{% include 'phpdoc/property_phpdoc.twig' with {'property_phpdoc': property.phpdoc} %}{% endif %}
+{% if property.propertyPhpdoc %}{% include 'phpdoc/property_phpdoc.twig' with {'property_phpdoc': property.propertyPhpdoc} %}{% endif %}
 {#- Trimming lines #}
     {{ property.visibility ~ ' ' }}
     {{- property.isStatic ? 'static ' -}}
