@@ -24,7 +24,7 @@
         "twig/twig": "^1.18 || ^2.0 || ^3.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.10",
+        "friendsofphp/php-cs-fixer": "^2.19.3",
         "phpspec/phpspec": "^6.1 || ^7.0"
     }
 }
