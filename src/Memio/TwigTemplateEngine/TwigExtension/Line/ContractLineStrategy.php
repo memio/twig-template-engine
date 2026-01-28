@@ -11,8 +11,8 @@
 
 namespace Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 use Memio\Model\Contract;
+use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class ContractLineStrategy implements LineStrategy
 {

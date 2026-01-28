@@ -11,9 +11,9 @@
 
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\Model\Objekt;
 use Memio\Model\Constant;
 use Memio\Model\Method;
+use Memio\Model\Objekt;
 use Memio\Model\Property;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use Memio\TwigTemplateEngine\TwigExtension\Line\ObjectLineStrategy;

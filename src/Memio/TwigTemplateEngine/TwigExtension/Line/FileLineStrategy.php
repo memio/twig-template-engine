@@ -11,8 +11,8 @@
 
 namespace Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 use Memio\Model\File;
+use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class FileLineStrategy implements LineStrategy
 {
