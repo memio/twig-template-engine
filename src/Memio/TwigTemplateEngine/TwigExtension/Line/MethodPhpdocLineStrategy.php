@@ -44,5 +44,7 @@ class MethodPhpdocLineStrategy implements LineStrategy
         if ('throw_tags' === $block) {
             return $hasThrowTags && $hasApiTag;
         }
+
+        return false;
     }
 }
