@@ -80,6 +80,9 @@ rector-check: ## Refactoring checks with Rector
 ## —— Lib 📚 ———————————————————————————————————————————————————————————————————
 lib-init: ## First install / resetting (Docker build, up, etc)
 	@echo ''
+	@echo '  // Installing git hooks...'
+	@git config core.hooksPath bin/hooks
+	@echo ''
 	@echo '  // Stopping lib docker services...'
 	@$(MAKE) docker-down
 	@echo ''
