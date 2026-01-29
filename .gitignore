@@ -1,5 +1,18 @@
-# Third party
-/composer.lock
-/phpunit.xml
-/vendor
-/.php_cs
+# composer
+composer.lock
+vendor/
+
+# couscous
+.couscous
+
+# friendsofphp/php-cs-fixer
+.php_cs.cache
+.php-cs-fixer.php
+.php-cs-fixer.cache
+
+# phpstan
+phpstan.neon
+
+# phpunit
+phpunit.xml
+.phpunit.result.cache

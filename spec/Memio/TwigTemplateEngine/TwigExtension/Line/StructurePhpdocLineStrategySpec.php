@@ -11,10 +11,10 @@
 
 namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 
-use Memio\Model\Phpdoc\StructurePhpdoc;
 use Memio\Model\Phpdoc\ApiTag;
-use Memio\Model\Phpdoc\Description;
 use Memio\Model\Phpdoc\DeprecationTag;
+use Memio\Model\Phpdoc\Description;
+use Memio\Model\Phpdoc\StructurePhpdoc;
 use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use Memio\TwigTemplateEngine\TwigExtension\Line\StructurePhpdocLineStrategy;
 use PhpSpec\ObjectBehavior;

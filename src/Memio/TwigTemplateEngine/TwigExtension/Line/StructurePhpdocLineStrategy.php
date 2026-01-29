@@ -35,5 +35,7 @@ class StructurePhpdocLineStrategy implements LineStrategy
         if (self::DEPRECATION_TAG === $block) {
             return $hasApiTag && $hasDeprecationTag;
         }
+
+        return false;
     }
 }

@@ -14,8 +14,8 @@ namespace spec\Memio\TwigTemplateEngine\TwigExtension\Line;
 use Memio\Model\Constant;
 use Memio\Model\Contract;
 use Memio\Model\Method;
-use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use Memio\TwigTemplateEngine\TwigExtension\Line\ContractLineStrategy;
+use Memio\TwigTemplateEngine\TwigExtension\Line\LineStrategy;
 use PhpSpec\ObjectBehavior;
 
 class ContractLineStrategySpec extends ObjectBehavior
