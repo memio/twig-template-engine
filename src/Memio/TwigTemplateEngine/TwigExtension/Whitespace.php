@@ -13,7 +13,6 @@ namespace Memio\TwigTemplateEngine\TwigExtension;
 
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Phpdoc\ParameterTag;
-use Memio\Model\Type as ModelType;
 use Memio\TwigTemplateEngine\TwigExtension\Line\Line;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -46,9 +45,8 @@ class Whitespace extends AbstractExtension
         $longestElement = $elementLength;
         foreach ($collection as $element) {
             if (ParameterTag::class === $element::class) {
-                $type = $element->getType();
-                $modelType = new ModelType($element->getType());
-                if ($modelType->isObject()) {
+                $type = $element->type->getName();
+                if ($element->type->isObject()) {
                     $fullyQualifiedName = new FullyQualifiedName($type);
                     $type = $fullyQualifiedName->getName();
                 }
