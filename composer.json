@@ -20,7 +20,7 @@
     "require": {
         "memio/model": "^3.0",
         "memio/pretty-printer": "^3.0",
-        "php": "^7.3 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "twig/twig": "^3.0"
     },
     "require-dev": {
