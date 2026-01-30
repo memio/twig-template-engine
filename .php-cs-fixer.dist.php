@@ -41,12 +41,11 @@ return (new PhpCsFixer\Config())
 
         // [Symfony] defaults to `['elements' => ['const', 'method', 'property']]`
         // We exclude `method` for phpspec (no visibility keyword)
-        // We exclude `const` because we support PHP 7.4 (const visibility is optional)
+        // We exclude `const` because we support PHP 8.0 (const visibility is optional)
         'modifier_keywords' => ['elements' => ['property']],
 
         // [Symfony] defaults to `['elements' => ['arguments', 'arrays', 'parameters']]`
-        // We exclude `parameters` because we support PHP 7.4 (trailing comma in declarations requires PHP 8.0)
-        'trailing_comma_in_multiline' => ['elements' => ['arguments', 'arrays']],
+        'trailing_comma_in_multiline' => ['elements' => ['arguments', 'arrays', 'parameters']],
     ])
     ->setUsingCache(true)
     ->setFinder($finder)
