@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.0: PHP 8.0, twig 3
+
+* dropped support for PHP < 8.0
+* dropped support for twig < 3.0
+
 ## 3.0.2: Dockerised dev environment
 
 * setup Github Actions
