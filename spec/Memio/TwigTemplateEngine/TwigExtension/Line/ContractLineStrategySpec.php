@@ -20,19 +20,19 @@ use PhpSpec\ObjectBehavior;
 
 class ContractLineStrategySpec extends ObjectBehavior
 {
-    function it_is_a_line_strategy()
+    public function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_contracts()
+    public function it_supports_contracts()
     {
         $contract = (new Contract('Memio\PrettyPrinter\TemplateEngine'));
 
         $this->supports($contract)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
+    public function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
     {
         $contract = (new Contract('Memio\PrettyPrinter\TemplateEngine'))
             ->addConstant(new Constant('CONSTANT_ONE', 1))

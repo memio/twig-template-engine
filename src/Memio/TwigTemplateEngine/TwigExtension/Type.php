@@ -65,7 +65,7 @@ class Type extends AbstractExtension
 
     public function filterNamespace(string $stringType): string
     {
-        $nullablePrefix = '?' === substr($stringType, 0, 1)
+        $nullablePrefix = str_starts_with($stringType, '?')
             ? '?'
             : '';
 

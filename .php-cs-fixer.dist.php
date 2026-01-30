@@ -27,20 +27,25 @@
  * ;
  * ```
  */
-
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
+    ->ignoreDotFiles(false)
 ;
 
 return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
 
-        // [Symfony] defaults to `camelCase`, we set it to `snake_case` (phpspec style) 
+        // [Symfony] defaults to `camelCase`, we set it to `snake_case` (phpspec style)
         'php_unit_method_casing' => ['case' => 'snake_case'],
 
-        // [Symfony] defaults to `true`, we set it to `false` for phpspec
-        'visibility_required' => false,
+        // [Symfony] defaults to `['elements' => ['const', 'method', 'property']]`
+        // We exclude `method` for phpspec (no visibility keyword)
+        // We exclude `const` because we support PHP 8.0 (const visibility is optional)
+        'modifier_keywords' => ['elements' => ['property']],
+
+        // [Symfony] defaults to `['elements' => ['arguments', 'arrays', 'parameters']]`
+        'trailing_comma_in_multiline' => ['elements' => ['arguments', 'arrays', 'parameters']],
     ])
     ->setUsingCache(true)
     ->setFinder($finder)

@@ -21,19 +21,19 @@ use PhpSpec\ObjectBehavior;
 
 class ObjectLineStrategySpec extends ObjectBehavior
 {
-    function it_is_a_line_strategy()
+    public function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_objects()
+    public function it_supports_objects()
     {
         $objekt = new Objekt('Memio\Model\Objekt');
 
         $this->supports($objekt)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_constants_if_it_also_has_properties()
+    public function it_needs_an_empty_line_after_constants_if_it_also_has_properties()
     {
         $objekt = (new Objekt('Memio\Model\Objekt'))
             ->addConstant(new Constant('CONSTANT_ONE', 1))
@@ -44,7 +44,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($objekt, ObjectLineStrategy::CONSTANTS_BLOCK)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
+    public function it_needs_an_empty_line_after_constants_if_it_also_has_methods()
     {
         $objekt = (new Objekt('Memio\Model\Objekt'))
             ->addConstant(new Constant('CONSTANT_ONE', 1))
@@ -54,7 +54,7 @@ class ObjectLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($objekt, ObjectLineStrategy::CONSTANTS_BLOCK)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_properties_if_it_also_has_methods()
+    public function it_needs_an_empty_line_after_properties_if_it_also_has_methods()
     {
         $objekt = (new Objekt('Memio\Model\Objekt'))
             ->addProperty(new Property('filename'))

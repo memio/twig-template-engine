@@ -33,6 +33,6 @@ class Line
             }
         }
 
-        throw new InvalidArgumentException('No strategy supports given model '.get_class($model));
+        throw new InvalidArgumentException('No strategy supports given model '.$model::class);
     }
 }

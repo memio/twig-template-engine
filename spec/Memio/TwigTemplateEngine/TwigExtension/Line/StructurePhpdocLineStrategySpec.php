@@ -21,19 +21,19 @@ use PhpSpec\ObjectBehavior;
 
 class StructurePhpdocLineStrategySpec extends ObjectBehavior
 {
-    function it_is_a_line_strategy()
+    public function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_structure_phpdocs()
+    public function it_supports_structure_phpdocs()
     {
         $structurePhpdoc = new StructurePhpdoc();
 
         $this->supports($structurePhpdoc)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_description_if_it_also_has_an_api_tag()
+    public function it_needs_an_empty_line_after_description_if_it_also_has_an_api_tag()
     {
         $structurePhpdoc = (new StructurePhpdoc())
             ->setDescription(new Description('helpful description'))
@@ -43,7 +43,7 @@ class StructurePhpdocLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($structurePhpdoc, StructurePhpdocLineStrategy::DESCRPTION)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_description_if_it_also_has_a_deprecation_tag()
+    public function it_needs_an_empty_line_after_description_if_it_also_has_a_deprecation_tag()
     {
         $structurePhpdoc = (new StructurePhpdoc())
             ->setDescription(new Description('helpful description'))
@@ -53,7 +53,7 @@ class StructurePhpdocLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($structurePhpdoc, StructurePhpdocLineStrategy::DESCRPTION)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_deprecation_tag_if_it_also_has_an_api_tag()
+    public function it_needs_an_empty_line_after_deprecation_tag_if_it_also_has_an_api_tag()
     {
         $structurePhpdoc = (new StructurePhpdoc())
             ->setDeprecationTag(new DeprecationTag())

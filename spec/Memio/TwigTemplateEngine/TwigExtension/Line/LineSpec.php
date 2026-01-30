@@ -18,8 +18,8 @@ use PhpSpec\ObjectBehavior;
 
 class LineSpec extends ObjectBehavior
 {
-    function it_executes_the_first_strategy_that_supports_given_model(
-        LineStrategy $lineStrategy
+    public function it_executes_the_first_strategy_that_supports_given_model(
+        LineStrategy $lineStrategy,
     ) {
         $this->add($lineStrategy);
 
@@ -33,8 +33,8 @@ class LineSpec extends ObjectBehavior
         $this->needsLineAfter($model, $block)->shouldBe($strategyReturn);
     }
 
-    function it_fails_when_no_strategy_supports_given_model(
-        LineStrategy $lineStrategy
+    public function it_fails_when_no_strategy_supports_given_model(
+        LineStrategy $lineStrategy,
     ) {
         $this->add($lineStrategy);
 
@@ -43,7 +43,7 @@ class LineSpec extends ObjectBehavior
         $lineStrategy->supports($model)->willReturn(false);
 
         $this->shouldThrow(
-            InvalidArgumentException::class
+            InvalidArgumentException::class,
         )->duringNeedsLineAfter($model, 'arguments');
     }
 }

@@ -16,11 +16,8 @@ use Twig\Environment;
 
 class TwigTemplateEngine implements TemplateEngine
 {
-    private $twig;
-
-    public function __construct(Environment $twig)
+    public function __construct(private Environment $twig)
     {
-        $this->twig = $twig;
     }
 
     public function addPath(string $path)

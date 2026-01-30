@@ -16,7 +16,7 @@ use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class ContractLineStrategy implements LineStrategy
 {
-    const CONSTANTS_BLOCK = 'constants';
+    public const CONSTANTS_BLOCK = 'constants';
 
     public function supports($model): bool
     {
