@@ -16,7 +16,7 @@ use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class FileLineStrategy implements LineStrategy
 {
-    const USE_STATEMENTS_BLOCK = 'fully_qualified_names';
+    public const USE_STATEMENTS_BLOCK = 'fully_qualified_names';
 
     public function supports($model): bool
     {

@@ -19,19 +19,19 @@ use PhpSpec\ObjectBehavior;
 
 class FileLineStrategySpec extends ObjectBehavior
 {
-    function it_is_a_line_strategy()
+    public function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_files()
+    public function it_supports_files()
     {
         $file = new File('src/Memio/Model/Contract.php');
 
         $this->supports($file)->shouldBe(true);
     }
 
-    function it_needs_an_empty_line_after_use_statements()
+    public function it_needs_an_empty_line_after_use_statements()
     {
         $file = (new File('src/Memio/Model/Contract.php'))
             ->addFullyQualifiedName(new FullyQualifiedName('Memio\Model\Phpdoc\StructurePhpdoc'))

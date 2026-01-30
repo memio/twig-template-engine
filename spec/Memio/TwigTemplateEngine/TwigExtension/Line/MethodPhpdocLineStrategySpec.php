@@ -21,19 +21,19 @@ use PhpSpec\ObjectBehavior;
 
 class MethodPhpdocLineStrategySpec extends ObjectBehavior
 {
-    function it_is_a_line_strategy()
+    public function it_is_a_line_strategy()
     {
         $this->shouldImplement(LineStrategy::class);
     }
 
-    function it_supports_method_phpdocs()
+    public function it_supports_method_phpdocs()
     {
         $methodPhpdoc = new MethodPhpdoc();
 
         $this->supports($methodPhpdoc)->shouldBe(true);
     }
 
-    function it_needs_a_new_line_after_description_if_it_has_any_other_tag()
+    public function it_needs_a_new_line_after_description_if_it_has_any_other_tag()
     {
         $methodPhpdoc = (new MethodPhpdoc())
             ->setDescription(new Description('Helpful description'))
@@ -43,7 +43,7 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($methodPhpdoc, 'description')->shouldBe(true);
     }
 
-    function it_needs_a_new_line_after_parameter_tags_if_it_has_a_deprecation_tag()
+    public function it_needs_a_new_line_after_parameter_tags_if_it_has_a_deprecation_tag()
     {
         $methodPhpdoc = (new MethodPhpdoc())
             ->addParameterTag(new ParameterTag('string', 'filename'))
@@ -53,7 +53,7 @@ class MethodPhpdocLineStrategySpec extends ObjectBehavior
         $this->needsLineAfter($methodPhpdoc, 'parameter_tags')->shouldBe(true);
     }
 
-    function it_needs_a_new_line_after_deprecation_if_it_also_has_an_api_tag()
+    public function it_needs_a_new_line_after_deprecation_if_it_also_has_an_api_tag()
     {
         $methodPhpdoc = (new MethodPhpdoc())
             ->setDeprecationTag(new DeprecationTag())

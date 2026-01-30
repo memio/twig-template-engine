@@ -9,7 +9,7 @@ use Rector\Set\ValueObject\SetList;
 return RectorConfig::configure()
     ->withCache(
         '/tmp/rector',
-        FileCacheStorage::class
+        FileCacheStorage::class,
     )
     ->withPaths([
         __DIR__,

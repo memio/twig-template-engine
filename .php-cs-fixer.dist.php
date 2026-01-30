@@ -27,7 +27,6 @@
  * ;
  * ```
  */
-
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
     ->ignoreDotFiles(false)
@@ -37,7 +36,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
 
-        // [Symfony] defaults to `camelCase`, we set it to `snake_case` (phpspec style) 
+        // [Symfony] defaults to `camelCase`, we set it to `snake_case` (phpspec style)
         'php_unit_method_casing' => ['case' => 'snake_case'],
 
         // [Symfony] defaults to `['elements' => ['const', 'method', 'property']]`

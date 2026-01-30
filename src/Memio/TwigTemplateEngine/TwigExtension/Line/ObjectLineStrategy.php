@@ -16,8 +16,8 @@ use Memio\PrettyPrinter\Exception\InvalidArgumentException;
 
 class ObjectLineStrategy implements LineStrategy
 {
-    const CONSTANTS_BLOCK = 'constants';
-    const PROPERTIES_BLOCK = 'properties';
+    public const CONSTANTS_BLOCK = 'constants';
+    public const PROPERTIES_BLOCK = 'properties';
 
     public function supports($model): bool
     {

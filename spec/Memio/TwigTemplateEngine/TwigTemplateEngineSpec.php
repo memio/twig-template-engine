@@ -18,21 +18,21 @@ use Twig\Loader\FilesystemLoader;
 
 class TwigTemplateEngineSpec extends ObjectBehavior
 {
-    const TEMPLATE_PATH = '/tmp/templates';
-    const TEMPLATE = 'argument';
-    const OUTPUT = '$dateTime';
+    public const TEMPLATE_PATH = '/tmp/templates';
+    public const TEMPLATE = 'argument';
+    public const OUTPUT = '$dateTime';
 
-    function let(Environment $twig)
+    public function let(Environment $twig)
     {
         $this->beConstructedWith($twig);
     }
 
-    function it_is_a_template_engine()
+    public function it_is_a_template_engine()
     {
         $this->shouldHaveType(TemplateEngine::class);
     }
 
-    function it_can_have_more_paths(
+    public function it_can_have_more_paths(
         Environment $twig,
         FilesystemLoader $loader
     ) {
@@ -42,7 +42,7 @@ class TwigTemplateEngineSpec extends ObjectBehavior
         $this->addPath(self::TEMPLATE_PATH);
     }
 
-    function it_renders_templates_using_twig(
+    public function it_renders_templates_using_twig(
         Environment $twig
     ) {
         $parameters = ['name' => 'dateTime'];

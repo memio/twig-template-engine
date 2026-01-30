@@ -15,8 +15,8 @@ use Memio\Model\Phpdoc\StructurePhpdoc;
 
 class StructurePhpdocLineStrategy implements LineStrategy
 {
-    const DESCRPTION = 'description';
-    const DEPRECATION_TAG = 'deprecation_tag';
+    public const DESCRPTION = 'description';
+    public const DEPRECATION_TAG = 'deprecation_tag';
 
     public function supports($model): bool
     {
