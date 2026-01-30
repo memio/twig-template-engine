@@ -34,7 +34,7 @@ class TwigTemplateEngineSpec extends ObjectBehavior
 
     public function it_can_have_more_paths(
         Environment $twig,
-        FilesystemLoader $loader
+        FilesystemLoader $loader,
     ) {
         $twig->getLoader()->willReturn($loader);
         $loader->prependPath(self::TEMPLATE_PATH)->shouldBeCalled();
@@ -43,7 +43,7 @@ class TwigTemplateEngineSpec extends ObjectBehavior
     }
 
     public function it_renders_templates_using_twig(
-        Environment $twig
+        Environment $twig,
     ) {
         $parameters = ['name' => 'dateTime'];
 

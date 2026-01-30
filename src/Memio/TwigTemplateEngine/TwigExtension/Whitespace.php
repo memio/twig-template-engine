@@ -21,11 +21,8 @@ use Twig\TwigFunction;
 
 class Whitespace extends AbstractExtension
 {
-    private $line;
-
-    public function __construct(Line $line)
+    public function __construct(private Line $line)
     {
-        $this->line = $line;
     }
 
     public function getFunctions(): array
@@ -48,7 +45,7 @@ class Whitespace extends AbstractExtension
         $elementLength = strlen($current);
         $longestElement = $elementLength;
         foreach ($collection as $element) {
-            if (ParameterTag::class === get_class($element)) {
+            if (ParameterTag::class === $element::class) {
                 $type = $element->getType();
                 $modelType = new ModelType($element->getType());
                 if ($modelType->isObject()) {
@@ -65,7 +62,7 @@ class Whitespace extends AbstractExtension
     public function indent(
         string $text,
         int $level = 1,
-        string $type = 'code'
+        string $type = 'code',
     ): string {
         $lines = explode("\n", $text);
         $indentedLines = [];

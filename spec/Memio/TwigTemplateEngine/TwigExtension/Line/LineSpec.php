@@ -19,7 +19,7 @@ use PhpSpec\ObjectBehavior;
 class LineSpec extends ObjectBehavior
 {
     public function it_executes_the_first_strategy_that_supports_given_model(
-        LineStrategy $lineStrategy
+        LineStrategy $lineStrategy,
     ) {
         $this->add($lineStrategy);
 
@@ -34,7 +34,7 @@ class LineSpec extends ObjectBehavior
     }
 
     public function it_fails_when_no_strategy_supports_given_model(
-        LineStrategy $lineStrategy
+        LineStrategy $lineStrategy,
     ) {
         $this->add($lineStrategy);
 
