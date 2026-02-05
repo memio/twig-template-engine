@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v3.0.4: Fixed Model v3 usage (more!)
+
+Update Whitespace extension for model v3 API:
+* Update `align()` to access `ParameterTag->type` directly instead of `getType()`
+
 ## 3.0.3: Fixed Model v3 usage
 
 Fully update templates and Type extension to work with memio/model v3 changes:
