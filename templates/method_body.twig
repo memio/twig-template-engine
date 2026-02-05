@@ -1,5 +1,5 @@
 {% set inline %}
-    {%- include 'collection/arguments/inline.twig' with { 'argument_collection': method.allArguments } only -%}
+    {%- include 'collection/arguments/inline.twig' with { 'argument_collection': method.arguments } only -%}
 {% endset %}
 {% set length_restriction = (22 + method.name | length) %}
 {% if method.isAbstract %}
