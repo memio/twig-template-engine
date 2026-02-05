@@ -58,9 +58,8 @@ class Type extends AbstractExtension
         if (!$model instanceof Argument) {
             return false;
         }
-        $type = new ModelType($model->getType());
 
-        return $type->hasTypehint();
+        return $model->type->hasTypehint();
     }
 
     public function filterNamespace(string $stringType): string
