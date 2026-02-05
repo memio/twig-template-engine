@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.0.3: Fixed Model v3 usage
+
+Fully update templates and Type extension to work with memio/model v3 changes:
+* Public properties instead of getter methods
+* Type stored as Type object instead of string
+
 ## 3.0.2: Dockerised dev environment
 
 * setup Github Actions
