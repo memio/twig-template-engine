@@ -50,6 +50,9 @@ class Whitespace extends AbstractExtension
                     $fullyQualifiedName = new FullyQualifiedName($type);
                     $type = $fullyQualifiedName->getName();
                 }
+                if ($element->type->isNullable) {
+                    $type = '?'.$type;
+                }
                 $longestElement = max($longestElement, strlen($type));
             }
         }

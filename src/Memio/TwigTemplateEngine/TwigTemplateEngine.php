@@ -20,7 +20,7 @@ class TwigTemplateEngine implements TemplateEngine
     {
     }
 
-    public function addPath(string $path)
+    public function addPath(string $path): void
     {
         $this->twig->getLoader()->prependPath($path);
     }

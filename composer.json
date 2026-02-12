@@ -18,8 +18,8 @@
         "Memio\\TwigTemplateEngine\\Config\\": "config"
     }},
     "require": {
-        "memio/model": "^3.0",
-        "memio/pretty-printer": "^3.0",
+        "memio/model": "^4.0@alpha",
+        "memio/pretty-printer": "^4.0@alpha",
         "php": "^8.0",
         "twig/twig": "^3.0"
     },
